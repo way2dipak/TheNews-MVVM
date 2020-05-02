@@ -205,3 +205,82 @@ extension ViewController {
         }
     }
 }
+
+//Button Circular Image
+extension UIImage {
+    
+    func circularImage(withSize size: CGSize?) -> UIImage? {
+        let newSize = size ?? self.size
+
+        let minEdge = min(newSize.height, newSize.width)
+        let size = CGSize(width: minEdge, height: minEdge)
+
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let context = UIGraphicsGetCurrentContext()
+
+        self.draw(in: CGRect(origin: CGPoint.zero, size: size), blendMode: .copy, alpha: 1.0)
+
+        (context!).setBlendMode(.copy)
+        (context!).setFillColor(UIColor.clear.cgColor)
+
+        let rectPath = UIBezierPath(rect: CGRect(origin: CGPoint.zero, size: size))
+        let circlePath = UIBezierPath(ovalIn: CGRect(origin: CGPoint.zero, size: size))
+        rectPath.append(circlePath)
+        rectPath.usesEvenOddFillRule = true
+        rectPath.fill()
+
+        guard let result = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+
+        return result
+    }
+
+
+  func crop(to:CGSize) -> UIImage {
+    guard let cgimage = self.cgImage else { return self }
+
+    let contextImage: UIImage = UIImage(cgImage: cgimage)
+
+    let contextSize: CGSize = contextImage.size
+
+    //Set to square
+    var posX: CGFloat = 0.0
+    var posY: CGFloat = 0.0
+    let cropAspect: CGFloat = to.width / to.height
+
+    var cropWidth: CGFloat = to.width
+    var cropHeight: CGFloat = to.height
+
+    if to.width > to.height { //Landscape
+        cropWidth = contextSize.width
+        cropHeight = contextSize.width / cropAspect
+        posY = (contextSize.height - cropHeight) / 2
+    } else if to.width < to.height { //Portrait
+        cropHeight = contextSize.height
+        cropWidth = contextSize.height * cropAspect
+        posX = 0
+    } else { //Square
+        if contextSize.width >= contextSize.height { //Square on landscape (or square)
+            cropHeight = contextSize.height
+            cropWidth = contextSize.height * cropAspect
+            posX = (contextSize.width - cropWidth) / 2
+        }else{ //Square on portrait
+            cropWidth = contextSize.width
+            cropHeight = contextSize.width / cropAspect
+            posY = (contextSize.height - cropHeight) / 2
+        }
+    }
+
+    let rect: CGRect = CGRect(x : posX, y : posY, width : cropWidth, height : cropHeight)
+
+    // Create bitmap image from context using the rect
+    let imageRef: CGImage = contextImage.cgImage!.cropping(to: rect)!
+
+    // Create a new image based on the imageRef and rotate back to the original orientation
+    let cropped: UIImage = UIImage(cgImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
+
+    cropped.draw(in: CGRect(x : 0, y : 0, width : to.width, height : to.height))
+
+    return cropped
+  }
+}

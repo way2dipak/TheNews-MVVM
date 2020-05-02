@@ -27,22 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
 extension AppDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-               return (GIDSignIn.sharedInstance()?.handle(url))!
-       }
+        return (GIDSignIn.sharedInstance()?.handle(url))!
+    }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error  = error {
             print(error.localizedDescription)
             return
         } else {
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
+            Global.shared.userObj = UserModel(userId: user.userID, idToken: user.authentication.idToken, fullName: user.profile.name, givenName: user.profile.givenName, familyName: user.profile.familyName, email: user.profile.email, image: user.profile.imageURL(withDimension: 30)!.absoluteString)
             navigateToDashboard()
-
         }
     }
     
