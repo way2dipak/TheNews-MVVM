@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Top Headlines-->
+        <scene sceneID="6Ee-xT-L2K">
+            <objects>
+                <viewController id="hAq-pV-jjZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c8H-Q1-FoW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hSU-GM-RmC"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="More" image="HeadLines1" selectedImage="HeadLines2" id="kKs-Ga-2Pm"/>
+                    <navigationItem key="navigationItem" title="Top Headlines" id="z7Q-eJ-M2c"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rww-0P-VCt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="814" y="115"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZeV-eP-QKR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dc1-xR-WiS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="1tp-G2-3qj">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hAq-pV-jjZ" kind="relationship" relationship="rootViewController" id="8IN-5R-M5E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QDG-wo-EIj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48.75" y="115"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="HeadLines1" width="24" height="24"/>
+        <image name="HeadLines2" width="24" height="24"/>
+    </resources>
+</document>
