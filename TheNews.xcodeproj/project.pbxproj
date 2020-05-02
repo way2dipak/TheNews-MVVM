@@ -21,6 +21,7 @@
 		9D6F4F9D245D7A7600C73649 /* ArticlesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4F9B245D7A7600C73649 /* ArticlesTableViewCell.swift */; };
 		9D6F4F9E245D7A7600C73649 /* ArticlesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6F4F9C245D7A7600C73649 /* ArticlesTableViewCell.xib */; };
 		9D6F4FA0245D884C00C73649 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4F9F245D884C00C73649 /* DiscoverViewModel.swift */; };
+		9D6F4FA2245D8C0100C73649 /* DiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4FA1245D8C0100C73649 /* DiscoverService.swift */; };
 		9DAD67E0245D4A0300A52F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD67DF245D4A0300A52F7B /* AppDelegate.swift */; };
 		9DAD67E4245D4A0300A52F7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD67E3245D4A0300A52F7B /* ViewController.swift */; };
 		9DAD67E7245D4A0300A52F7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DAD67E5245D4A0300A52F7B /* Main.storyboard */; };
@@ -60,6 +61,10 @@
 		9D6F4F9B245D7A7600C73649 /* ArticlesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesTableViewCell.swift; sourceTree = "<group>"; };
 		9D6F4F9C245D7A7600C73649 /* ArticlesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticlesTableViewCell.xib; sourceTree = "<group>"; };
 		9D6F4F9F245D884C00C73649 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
+		9D6F4FA1245D8C0100C73649 /* DiscoverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverService.swift; sourceTree = "<group>"; };
+		9D6F4FA6245D8DA600C73649 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		9D6F4FA7245D8DA600C73649 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		9D6F4FA8245D8DA600C73649 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		9DAD67DC245D4A0300A52F7B /* The News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DAD67DF245D4A0300A52F7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DAD67E3245D4A0300A52F7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -312,6 +317,16 @@
 			path = StoryboardManager;
 			sourceTree = "<group>";
 		};
+		9D6F4FA5245D8DA600C73649 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				9D6F4FA6245D8DA600C73649 /* UserViewModel.swift */,
+				9D6F4FA7245D8DA600C73649 /* Global.swift */,
+				9D6F4FA8245D8DA600C73649 /* UserModel.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		9DAD67D3245D4A0300A52F7B = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +350,7 @@
 		9DAD67DE245D4A0300A52F7B /* TheNews */ = {
 			isa = PBXGroup;
 			children = (
+				9D6F4FA5245D8DA600C73649 /* Global */,
 				9D6F4F92245D678B00C73649 /* StoryboardManager */,
 				9D6F4F8F245D5E4600C73649 /* NetworkManager */,
 				9D6F4F8C245D5DF200C73649 /* Extension */,
@@ -390,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				9D6F4F82245D562400C73649 /* DiscoverViewController.swift */,
+				9D6F4FA1245D8C0100C73649 /* DiscoverService.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -623,6 +640,7 @@
 				9D6F4F96245D73A000C73649 /* DiscoverModel.swift in Sources */,
 				9DAD67E4245D4A0300A52F7B /* ViewController.swift in Sources */,
 				9DAD67E0245D4A0300A52F7B /* AppDelegate.swift in Sources */,
+				9D6F4FA2245D8C0100C73649 /* DiscoverService.swift in Sources */,
 				9D6F4FA0245D884C00C73649 /* DiscoverViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
