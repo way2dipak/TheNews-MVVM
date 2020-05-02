@@ -41,12 +41,15 @@ extension AppDelegate {
             let givenName = user.profile.givenName
             let familyName = user.profile.familyName
             let email = user.profile.email
-            
-//            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! MainTabBar
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appDelegate.window?.rootViewController = vc
+            navigateToDashboard()
+
         }
     }
     
+    func navigateToDashboard() {
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: DashBoardTabController.identifier) as! DashBoardTabController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = vc
+    }
 }

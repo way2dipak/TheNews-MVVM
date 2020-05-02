@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashBoardTabController: UIViewController {
+class DashBoardTabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
