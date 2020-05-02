@@ -17,18 +17,18 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         let button = UIBarButtonItem(image: UIImage(named: ""), style: .plain, target: self, action: nil)
-        if let image = Global.shared.userObj?.image {
-            var profileImage : UIImageView?
-            profileImage?.kf.setImage(with: URL(string: image), placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil) { [weak self](result) in
-                if let strongSelf = self {
-                    switch result {
-                    case .success(let response) :
-                        button.image = response.image
-                    case .failure(let error):
-                        print("ImageFailedToLoad: \(String(describing: error.errorDescription))")
-                    }
-                }
-            }
-        }
+//        if let image = Global.shared.userObj?.image {
+//            var profileImage : UIImageView?
+//            profileImage?.kf.setImage(with: URL(string: image), placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil) { [weak self](result) in
+//                if let strongSelf = self {
+//                    switch result {
+//                    case .success(let response) :
+//                        button.image = response.image
+//                    case .failure(let error):
+//                        print("ImageFailedToLoad: \(String(describing: error.errorDescription))")
+//                    }
+//                }
+//            }
+//        }
     }
 }

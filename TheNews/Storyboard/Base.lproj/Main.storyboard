@@ -16,26 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk3-H0-USp">
-                                <rect key="frame" x="16" y="145" width="288" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The News" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8n-fz-dbq">
+                                <rect key="frame" x="85" y="71.5" width="150" height="137"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Rgk-3M-xzV"/>
+                                    <constraint firstAttribute="width" constant="150" id="hIn-G0-mrg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8n-fz-dbq">
-                                <rect key="frame" x="16" y="105" width="288" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="rgg-d1-BxJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7QF-1o-Cm6" customClass="GIDSignInButton">
-                                <rect key="frame" x="85" y="215" width="150" height="50"/>
+                                <rect key="frame" x="85" y="228.5" width="150" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="YaJ-dq-CxH"/>
@@ -45,14 +36,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="xk3-H0-USp" firstAttribute="top" secondItem="b8n-fz-dbq" secondAttribute="bottom" id="0R9-7y-wFR"/>
-                            <constraint firstItem="7QF-1o-Cm6" firstAttribute="top" secondItem="xk3-H0-USp" secondAttribute="bottom" constant="30" id="7lf-cU-vLv"/>
-                            <constraint firstItem="xk3-H0-USp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="8za-pT-Loi"/>
-                            <constraint firstItem="7QF-1o-Cm6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HJr-VR-u4O"/>
+                            <constraint firstItem="b8n-fz-dbq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="L9B-ut-S7u"/>
                             <constraint firstItem="7QF-1o-Cm6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pag-hV-p2a"/>
-                            <constraint firstItem="b8n-fz-dbq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="UIx-MR-4GS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b8n-fz-dbq" secondAttribute="trailing" constant="16" id="YAW-kK-FA5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xk3-H0-USp" secondAttribute="trailing" constant="16" id="oMA-cO-fBJ"/>
+                            <constraint firstItem="b8n-fz-dbq" firstAttribute="centerX" secondItem="7QF-1o-Cm6" secondAttribute="centerX" id="QVE-eJ-22Q"/>
+                            <constraint firstItem="7QF-1o-Cm6" firstAttribute="top" secondItem="b8n-fz-dbq" secondAttribute="bottom" constant="20" id="R1X-Ba-jyj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -60,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="675" y="118"/>
+            <point key="canvasLocation" x="675" y="117.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="air-xm-jyl">

@@ -10,7 +10,7 @@ import Foundation
 
 
 struct DiscoverViewModel {
-    let id: Int
+    let id: String
     let name: String
     let author, title, articleDescription: String
     let url: String

@@ -10,20 +10,23 @@ import Foundation
 
 struct DiscoverModel: Codable {
     let status: String
+    let message: String
     let totalResults: Int
     let articles: [ArticleModel]
     
     enum CodingKeys: String, CodingKey {
         case status = "status"
-        case totalResults = "totalResult"
+        case totalResults = "totalResults"
+        case message = "message"
         case articles = "articles"
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.status = try values.decodeIfPresent(String.self, forKey: .status) ?? "error"
+        self.message = try values.decodeIfPresent(String.self, forKey: .message) ?? ""
         self.totalResults = try values.decodeIfPresent(Int.self, forKey: .totalResults) ?? 0
-        self.articles = try values.decodeIfPresent([ArticleModel].self, forKey: .status) ?? [ArticleModel]()
+        self.articles = try values.decodeIfPresent([ArticleModel].self, forKey: .articles) ?? [ArticleModel]()
     }
     
 }
@@ -56,7 +59,7 @@ struct ArticleModel: Codable {
 }
 
 struct SourceModel: Codable {
-    let id: Int
+    let id: String
     let name: String
     
     enum CodingKeys: String, CodingKey {
@@ -65,7 +68,7 @@ struct SourceModel: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try values.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        self.id = try values.decodeIfPresent(String.self, forKey: .id) ?? ""
         self.name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
     }
 }

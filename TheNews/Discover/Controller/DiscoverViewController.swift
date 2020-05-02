@@ -9,13 +9,58 @@
 import UIKit
 
 class DiscoverViewController: UIViewController {
+    
+    @IBOutlet weak var discoverTableView: UITableView!
+    
+    var articleArray = [DiscoverViewModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        registerNib()
+        setUpView()
+        fetchNews(for: 1)
     }
     
+    func setUpView() {
+        discoverTableView.hideTableView(true)
+        discoverTableView.estimatedRowHeight = UITableView.automaticDimension
+        discoverTableView.rowHeight = 447.5
+        discoverTableView.tableFooterView = UIView()
+    }
+    
+    func registerNib() {
+        discoverTableView.register(UINib(nibName: ArticlesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ArticlesTableViewCell.identifier)
+    }
+    
+    func fetchNews(for pageNo: Int) {
+        DiscoverService().fetchDiscover(for: pageNo, result: { [weak self](articles) in
+            self?.articleArray = articles.map({ return DiscoverViewModel(articles: $0) })
+            DispatchQueue.main.async {
+                self?.discoverTableView.reloadData()
+                self?.discoverTableView.hideTableView(false)
+            }
+        }) { [weak self](error) in
+            //self?.displayAlert(title: "Error", message: error)
+            print("Error: \(error)")
+        }
+    }
 
 
+}
+
+extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return articleArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
+        let details = articleArray[indexPath.row]
+        cell.setUpValues(details: details)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }

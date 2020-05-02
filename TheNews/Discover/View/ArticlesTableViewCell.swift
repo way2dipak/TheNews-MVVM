@@ -11,7 +11,12 @@ import Kingfisher
 
 class ArticlesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var articleCoverImageView: UIImageView!
+    @IBOutlet weak var articleCoverImageView: UIImageView! {
+        didSet{
+            self.articleCoverImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            self.articleCoverImageView.cornerRadius = 10
+        }
+    }
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleContentTextView: UITextView!
     @IBOutlet weak var articlesPostedOnLabel: UILabel!
@@ -27,6 +32,7 @@ class ArticlesTableViewCell: UITableViewCell {
     
     func setUpValues(details: DiscoverViewModel) {
         articleCoverImageView.kf.indicatorType = .activity
+        articleCoverImageView.kf.indicator?.view.tintColor = .white
         articleCoverImageView.kf.setImage(with: URL(string: details.urlToImage), placeholder: #imageLiteral(resourceName: "Placeholder"), options: [.transition(.fade(0.3))], progressBlock: nil) { [weak self](result) in
             if let strongSelf = self {
                 switch result {
