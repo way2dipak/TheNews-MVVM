@@ -8,6 +8,7 @@ target 'TheNews' do
   # Pods for TheNews
 	pod 'Kingfisher'
 	pod 'IQKeyboardManagerSwift'
+	pod 'GoogleSignIn'
 
   target 'TheNewsTests' do
     inherit! :search_paths
