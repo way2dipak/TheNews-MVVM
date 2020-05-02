@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05771F0E245D51DA00E23C55 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05771F0D245D51DA00E23C55 /* AlertManager.swift */; };
+		05771F10245D541C00E23C55 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05771F0F245D541C00E23C55 /* MainTabBar.swift */; };
 		4336A84CC27AE2FDC9CA8567 /* Pods_TheNewsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B42A4DC7025B862B83FAACE4 /* Pods_TheNewsTests.framework */; };
 		95209371017FDE2BE4953AF5 /* Pods_TheNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56725829026898EAA885BC41 /* Pods_TheNews.framework */; };
 		9DAD67E0245D4A0300A52F7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD67DF245D4A0300A52F7B /* AppDelegate.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05771F0D245D51DA00E23C55 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		05771F0F245D541C00E23C55 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		56725829026898EAA885BC41 /* Pods_TheNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5CFEFFAA3A911A9ACDEE57 /* Pods-TheNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheNews.debug.xcconfig"; path = "Target Support Files/Pods-TheNews/Pods-TheNews.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD38A4456487CFF6E89A97A /* Pods-TheNewsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheNewsTests.release.xcconfig"; path = "Target Support Files/Pods-TheNewsTests/Pods-TheNewsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				9DAD6801245D4A6300A52F7B /* Storyboard */,
 				9DAD67DF245D4A0300A52F7B /* AppDelegate.swift */,
 				9DAD67E3245D4A0300A52F7B /* ViewController.swift */,
+				05771F0F245D541C00E23C55 /* MainTabBar.swift */,
+				05771F0D245D51DA00E23C55 /* AlertManager.swift */,
 				9DAD67E8245D4A0400A52F7B /* Assets.xcassets */,
 				9DAD67EA245D4A0400A52F7B /* LaunchScreen.storyboard */,
 				9DAD67ED245D4A0400A52F7B /* Info.plist */,
@@ -151,6 +157,7 @@
 				9DAD67D9245D4A0300A52F7B /* Frameworks */,
 				9DAD67DA245D4A0300A52F7B /* Resources */,
 				9831D6409315E69652AA3BFC /* [CP] Embed Pods Frameworks */,
+				0BB8B8F5623CB2356701AEB7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,6 +247,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0BB8B8F5623CB2356701AEB7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TheNews/Pods-TheNews-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TheNews/Pods-TheNews-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TheNews/Pods-TheNews-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		417DAAC53CBDEF5BF0AE698E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,8 +332,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05771F10245D541C00E23C55 /* MainTabBar.swift in Sources */,
 				9DAD67E4245D4A0300A52F7B /* ViewController.swift in Sources */,
 				9DAD67E0245D4A0300A52F7B /* AppDelegate.swift in Sources */,
+				05771F0E245D51DA00E23C55 /* AlertManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
