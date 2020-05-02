@@ -11,7 +11,7 @@
         <!--Search-->
         <scene sceneID="Ihm-JR-AIc">
             <objects>
-                <viewController id="CQ2-fm-ec5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="CQ2-fm-ec5" customClass="SearchViewController" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EbN-1W-C79">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,8 +19,17 @@
                         <viewLayoutGuide key="safeArea" id="g5N-RZ-z95"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="Search1" selectedImage="Search2" id="Ahx-l4-REd"/>
-                    <navigationItem key="navigationItem" title="Search" id="fNP-b6-AAS"/>
+                    <navigationItem key="navigationItem" title="Search" id="fNP-b6-AAS">
+                        <barButtonItem key="rightBarButtonItem" image="Discover1" id="Tw1-2n-hqq">
+                            <connections>
+                                <action selector="profileButtonTapped:" destination="CQ2-fm-ec5" id="RME-v4-j7O"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="profileButton" destination="Tw1-2n-hqq" id="byu-AH-Mj1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEf-x1-nHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -47,6 +56,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Discover1" width="24" height="24"/>
         <image name="Search1" width="24" height="24"/>
         <image name="Search2" width="24" height="24"/>
     </resources>

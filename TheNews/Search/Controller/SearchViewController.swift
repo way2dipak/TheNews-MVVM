@@ -7,24 +7,28 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchViewController: UIViewController {
-
+    
+    @IBOutlet weak var profileButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let button = UIBarButtonItem(image: UIImage(named: ""), style: .plain, target: self, action: nil)
+        if let image = Global.shared.userObj?.image {
+            var profileImage : UIImageView?
+            profileImage?.kf.setImage(with: URL(string: image), placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil) { [weak self](result) in
+                if let strongSelf = self {
+                    switch result {
+                    case .success(let response) :
+                        button.image = response.image
+                    case .failure(let error):
+                        print("ImageFailedToLoad: \(String(describing: error.errorDescription))")
+                    }
+                }
+            }
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
