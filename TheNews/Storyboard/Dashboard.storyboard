@@ -52,6 +52,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="DashBoardTabController" automaticallyAdjustsScrollViewInsets="NO" id="73K-kJ-5hb" customClass="DashBoardTabController" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qbh-Hk-W5c">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
