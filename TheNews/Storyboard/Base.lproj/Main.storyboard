@@ -23,5 +23,13 @@
             </objects>
             <point key="canvasLocation" x="139" y="118"/>
         </scene>
+        <!--Dashboard-->
+        <scene sceneID="z8X-Ep-IeN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="dFt-9k-7Ou" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0pL-CC-iGz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1082" y="83"/>
+        </scene>
     </scenes>
 </document>
