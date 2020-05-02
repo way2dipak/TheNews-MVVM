@@ -19,56 +19,18 @@ class StoryBoardManager {
         case Search = "Search"
         case HeadLines = "HeadLines"
         case More = "More"
-        case DashBoard = "DashBoard"
+        case DashBoard = "Dashboard"
         case Main = "Main"
     }
     
     /**
-    use this manager to manage the storyboard for naviagtion as here two diffrent storyboard is in used
+    use this manager to manage the storyboard for naviagtion as here two different storyboard is in used
     so insted of storyboard.instantiateViewController(withIdentifier: )
     example
-    StoryboardManager.shared.mainStoryboard.instantiateViewController(withIdentifier: )
+    StoryboardManager.shared.getStoryboard(name:)
     */
-    let mainStoryboard = UIStoryboard(name: StoryBoardName.Main.rawValue, bundle: nil)
-    
-    /**
-    use this manager to manage the storyboard for naviagtion as here two diffrent storyboard is in used
-    so insted of storyboard.instantiateViewController(withIdentifier: )
-    example
-    StoryboardManager.shared.dashboardStoryboard.instantiateViewController(withIdentifier: )
-    */
-    let dashboardStoryboard = UIStoryboard(name: StoryBoardName.DashBoard.rawValue, bundle: nil)
-    
-    /**
-     use this manager to manage the storyboard for naviagtion as here two diffrent storyboard is in used
-     so insted of storyboard.instantiateViewController(withIdentifier: )
-     example
-     StoryboardManager.shared.discoverStoryboard.instantiateViewController(withIdentifier: )
-     */
-    let discoverStoryboard = UIStoryboard(name: StoryBoardName.Discover.rawValue, bundle: nil)
-    /**
-    use this manager to manage the storyboard for naviagtion as here two diffrent storyboard is in used
-    so insted of storyboard.instantiateViewController(withIdentifier: )
-    example
-    StoryboardManager.shared.searchStoryboard.instantiateViewController(withIdentifier: )
-    */
-    let searchStoryboard = UIStoryboard(name: StoryBoardName.Search.rawValue, bundle: nil)
-    /**
-    use this manager to manage the storyboard for naviagtion as here two diffrent storyboard is in used
-    so insted of storyboard.instantiateViewController(withIdentifier: )
-    example
-    StoryboardManager.shared.headLinesStoryboard.instantiateViewController(withIdentifier: )
-    */
-    let headLinesStoryboard = UIStoryboard(name: StoryBoardName.HeadLines.rawValue, bundle: nil)
-    /**
-    use this manager to manage the storyboard for naviagtion as here two diffrent storyboard is in used
-    so insted of storyboard.instantiateViewController(withIdentifier: )
-    example
-    StoryboardManager.shared.moreStoryboard.instantiateViewController(withIdentifier: )
-    */
-    let moreStoryboard = UIStoryboard(name: StoryBoardName.More.rawValue, bundle: nil)
-    
-    
-    
+    func getStoryboard(name: StoryBoardName) -> UIStoryboard {
+        return UIStoryboard(name: name.rawValue, bundle: nil)
+    }
     
 }

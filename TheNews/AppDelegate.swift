@@ -47,11 +47,8 @@ extension AppDelegate {
     }
     
     func navigateToDashboard() {
-        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: DashBoardTabController.identifier) as! DashBoardTabController
+        let vc = StoryBoardManager.shared.getStoryboard(name: .DashBoard).instantiateViewController(withIdentifier: DashBoardTabController.identifier) as! DashBoardTabController
         let rootController = UINavigationController(rootViewController: vc)
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        appDelegate.window?.rootViewController = vc
         rootController.isNavigationBarHidden = true
         self.window?.rootViewController = rootController
         self.window?.makeKeyAndVisible()
