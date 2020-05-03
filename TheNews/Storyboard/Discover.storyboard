@@ -35,10 +35,13 @@
                         <viewLayoutGuide key="safeArea" id="p1K-l3-lGR"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Discover" image="Discover1" selectedImage="Discover2" id="Txn-1Y-5Fx"/>
-                    <navigationItem key="navigationItem" title="Discover" id="wty-7G-0dm"/>
+                    <navigationItem key="navigationItem" title="Discover" id="wty-7G-0dm">
+                        <barButtonItem key="rightBarButtonItem" image="Profile" id="4tL-0D-ayX"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="discoverTableView" destination="uaP-PO-v9N" id="vrG-x1-d7D"/>
+                        <outlet property="profileButton" destination="4tL-0D-ayX" id="o9Z-P1-c4K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVI-S7-3Mm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -52,7 +55,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="puE-Yh-4WU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -68,5 +71,6 @@
     <resources>
         <image name="Discover1" width="24" height="24"/>
         <image name="Discover2" width="24" height="24"/>
+        <image name="Profile" width="32" height="32"/>
     </resources>
 </document>

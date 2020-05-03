@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		4336A84CC27AE2FDC9CA8567 /* Pods_TheNewsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B42A4DC7025B862B83FAACE4 /* Pods_TheNewsTests.framework */; };
 		95209371017FDE2BE4953AF5 /* Pods_TheNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56725829026898EAA885BC41 /* Pods_TheNews.framework */; };
+		9D021430245E54CD006CAF6D /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4FA6245D8DA600C73649 /* UserViewModel.swift */; };
+		9D021431245E54DD006CAF6D /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4FA7245D8DA600C73649 /* Global.swift */; };
+		9D021432245E54E0006CAF6D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4FA8245D8DA600C73649 /* UserModel.swift */; };
+		9D021435245E5DFD006CAF6D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D021434245E5DFD006CAF6D /* BaseViewController.swift */; };
 		9D6F4F7D245D55F700C73649 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4F7C245D55F700C73649 /* MoreViewController.swift */; };
 		9D6F4F7F245D560900C73649 /* HeadLinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4F7E245D560900C73649 /* HeadLinesViewController.swift */; };
 		9D6F4F81245D561900C73649 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4F80245D561900C73649 /* SearchViewController.swift */; };
@@ -49,6 +53,7 @@
 		56725829026898EAA885BC41 /* Pods_TheNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5CFEFFAA3A911A9ACDEE57 /* Pods-TheNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheNews.debug.xcconfig"; path = "Target Support Files/Pods-TheNews/Pods-TheNews.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD38A4456487CFF6E89A97A /* Pods-TheNewsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheNewsTests.release.xcconfig"; path = "Target Support Files/Pods-TheNewsTests/Pods-TheNewsTests.release.xcconfig"; sourceTree = "<group>"; };
+		9D021434245E5DFD006CAF6D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9D6F4F7C245D55F700C73649 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		9D6F4F7E245D560900C73649 /* HeadLinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadLinesViewController.swift; sourceTree = "<group>"; };
 		9D6F4F80245D561900C73649 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +128,14 @@
 				B42A4DC7025B862B83FAACE4 /* Pods_TheNewsTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D021433245E5DE5006CAF6D /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				9D021434245E5DFD006CAF6D /* BaseViewController.swift */,
+			);
+			path = BaseController;
 			sourceTree = "<group>";
 		};
 		9D6F4F6D245D550E00C73649 /* Search */ = {
@@ -350,6 +363,7 @@
 		9DAD67DE245D4A0300A52F7B /* TheNews */ = {
 			isa = PBXGroup;
 			children = (
+				9D021433245E5DE5006CAF6D /* BaseController */,
 				9D6F4FA5245D8DA600C73649 /* Global */,
 				9D6F4F92245D678B00C73649 /* StoryboardManager */,
 				9D6F4F8F245D5E4600C73649 /* NetworkManager */,
@@ -633,14 +647,18 @@
 				9D6F4F91245D5E5500C73649 /* NetworkManager.swift in Sources */,
 				9D6F4F7F245D560900C73649 /* HeadLinesViewController.swift in Sources */,
 				9D6F4F9D245D7A7600C73649 /* ArticlesTableViewCell.swift in Sources */,
+				9D021435245E5DFD006CAF6D /* BaseViewController.swift in Sources */,
 				9D6F4F86245D58D700C73649 /* DashBoardTabController.swift in Sources */,
 				9D6F4F7D245D55F700C73649 /* MoreViewController.swift in Sources */,
 				9D6F4F83245D562400C73649 /* DiscoverViewController.swift in Sources */,
+				9D021432245E54E0006CAF6D /* UserModel.swift in Sources */,
+				9D021431245E54DD006CAF6D /* Global.swift in Sources */,
 				9D6F4F94245D67AA00C73649 /* StoryBoardManager.swift in Sources */,
 				9D6F4F96245D73A000C73649 /* DiscoverModel.swift in Sources */,
 				9DAD67E4245D4A0300A52F7B /* ViewController.swift in Sources */,
 				9DAD67E0245D4A0300A52F7B /* AppDelegate.swift in Sources */,
 				9D6F4FA2245D8C0100C73649 /* DiscoverService.swift in Sources */,
+				9D021430245E54CD006CAF6D /* UserViewModel.swift in Sources */,
 				9D6F4FA0245D884C00C73649 /* DiscoverViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

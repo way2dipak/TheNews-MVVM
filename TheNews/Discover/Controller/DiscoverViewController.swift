@@ -8,8 +8,9 @@
 
 import UIKit
 
-class DiscoverViewController: UIViewController {
+class DiscoverViewController: BaseViewController {
     
+    @IBOutlet weak var profileButton: UIBarButtonItem!
     @IBOutlet weak var discoverTableView: UITableView!
     
     var articleArray = [DiscoverViewModel]()
@@ -45,7 +46,10 @@ class DiscoverViewController: UIViewController {
         }
     }
 
-
+    override func onTapProfileButton() {
+        
+    }
+    
 }
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {

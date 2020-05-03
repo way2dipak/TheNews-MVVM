@@ -20,11 +20,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="Search1" selectedImage="Search2" id="Ahx-l4-REd"/>
                     <navigationItem key="navigationItem" title="Search" id="fNP-b6-AAS">
-                        <barButtonItem key="rightBarButtonItem" image="Discover1" id="Tw1-2n-hqq">
-                            <connections>
-                                <action selector="profileButtonTapped:" destination="CQ2-fm-ec5" id="RME-v4-j7O"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Profile" id="Tw1-2n-hqq"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -56,7 +52,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Discover1" width="24" height="24"/>
+        <image name="Profile" width="32" height="32"/>
         <image name="Search1" width="24" height="24"/>
         <image name="Search2" width="24" height="24"/>
     </resources>

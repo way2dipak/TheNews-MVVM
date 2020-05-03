@@ -28,7 +28,7 @@ struct DiscoverViewModel {
         self.articleDescription = articles.articleDescription
         self.url = articles.url
         self.urlToImage = articles.urlToImage
-        self.publishedAt = articles.publishedAt
+        self.publishedAt = articles.convertTimeStampToDate(date: articles.publishedAt)
         self.content = articles.content
     }
 }

@@ -56,6 +56,10 @@ struct ArticleModel: Codable {
         self.publishedAt = try values.decodeIfPresent(String.self, forKey: .publishedAt) ?? ""
         self.content = try values.decodeIfPresent(String.self, forKey: .content) ?? ""
     }
+    
+    func convertTimeStampToDate(date: String)-> String {
+        return self.publishedAt.toDate()?.timeAgoSinceDate() ?? "NA"
+    }
 }
 
 struct SourceModel: Codable {

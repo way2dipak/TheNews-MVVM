@@ -9,26 +9,16 @@
 import UIKit
 import Kingfisher
 
-class SearchViewController: UIViewController {
+class SearchViewController: BaseViewController {
     
     @IBOutlet weak var profileButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let button = UIBarButtonItem(image: UIImage(named: ""), style: .plain, target: self, action: nil)
-//        if let image = Global.shared.userObj?.image {
-//            var profileImage : UIImageView?
-//            profileImage?.kf.setImage(with: URL(string: image), placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil) { [weak self](result) in
-//                if let strongSelf = self {
-//                    switch result {
-//                    case .success(let response) :
-//                        button.image = response.image
-//                    case .failure(let error):
-//                        print("ImageFailedToLoad: \(String(describing: error.errorDescription))")
-//                    }
-//                }
-//            }
-//        }
+        
+    }
+    
+    override func onTapProfileButton() {
+        
     }
 }

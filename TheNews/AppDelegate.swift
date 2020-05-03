@@ -35,7 +35,7 @@ extension AppDelegate {
             print(error.localizedDescription)
             return
         } else {
-           // Global.shared.userObj = UserModel(userId: user.userID, idToken: user.authentication.idToken, fullName: user.profile.name, givenName: user.profile.givenName, familyName: user.profile.familyName, email: user.profile.email, image: user.profile.imageURL(withDimension: 30)!.absoluteString)
+            Global.shared.userObj = UserModel(userId: user.userID, idToken: user.authentication.idToken, fullName: user.profile.name, givenName: user.profile.givenName, familyName: user.profile.familyName, email: user.profile.email, image: user.profile.imageURL(withDimension: 30)!.absoluteString)
             navigateToDashboard()
         }
     }

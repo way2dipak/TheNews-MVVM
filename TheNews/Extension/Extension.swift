@@ -324,3 +324,15 @@ extension Date {
         return "NA"
     }
 }
+
+extension String {
+    func toDate(withFormat format: String = "yyyy-MM-dd'T'HH:mm:ss'Z'")-> Date?{ //yyyy-MM-ddTHH:mm:ssZ
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        dateFormatter.dateFormat = format
+        let date = dateFormatter.date(from: self)
+        
+        return date
+    }
+}
