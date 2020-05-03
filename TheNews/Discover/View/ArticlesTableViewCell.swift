@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 protocol CellDelegate {
-    func didTapSourceButton()
+    func didTapSourceButton(with url: String)
 }
 
 class ArticlesTableViewCell: UITableViewCell {
@@ -27,6 +27,7 @@ class ArticlesTableViewCell: UITableViewCell {
     @IBOutlet weak var sourceButton: UIButton!
     
     var sourceUrl = ""
+    var cellDelegate: CellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,7 +56,7 @@ class ArticlesTableViewCell: UITableViewCell {
     }
     
     @IBAction func onTapVisitSourceButton(_ sender: UIButton) {
-        
+        cellDelegate?.didTapSourceButton(with: self.sourceUrl)
     }
     
 }

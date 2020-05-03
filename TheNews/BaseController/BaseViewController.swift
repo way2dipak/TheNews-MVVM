@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 class BaseViewController: UIViewController {
     
@@ -52,6 +53,10 @@ class BaseViewController: UIViewController {
  
     
     @objc func onTapProfileButton() {
-        
+        displayAlertWithAction(title: "SignOut!", cancelButtonName: "No", message: "Do you want to Signout?", actionButtonName: "Yes, Sign me out") {
+            GIDSignIn.sharedInstance().signOut()
+            let delegate = UIApplication.shared.delegate as? AppDelegate
+            delegate?.setRootController()
+        }
     }
 }

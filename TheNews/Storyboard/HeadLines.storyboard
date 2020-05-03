@@ -11,16 +11,35 @@
         <!--Top Headlines-->
         <scene sceneID="6Ee-xT-L2K">
             <objects>
-                <viewController id="hAq-pV-jjZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HeadLinesViewController" id="hAq-pV-jjZ" customClass="HeadLinesViewController" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c8H-Q1-FoW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKt-19-22h">
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hAq-pV-jjZ" id="C59-f5-b4L"/>
+                                    <outlet property="delegate" destination="hAq-pV-jjZ" id="fkH-AX-hK0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LKt-19-22h" firstAttribute="leading" secondItem="hSU-GM-RmC" secondAttribute="leading" id="4UP-12-msx"/>
+                            <constraint firstItem="LKt-19-22h" firstAttribute="top" secondItem="hSU-GM-RmC" secondAttribute="top" id="Zn9-v6-SCK"/>
+                            <constraint firstItem="hSU-GM-RmC" firstAttribute="trailing" secondItem="LKt-19-22h" secondAttribute="trailing" id="foH-3j-eie"/>
+                            <constraint firstItem="hSU-GM-RmC" firstAttribute="bottom" secondItem="LKt-19-22h" secondAttribute="bottom" id="l0h-oh-XOt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hSU-GM-RmC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="More" image="HeadLines1" selectedImage="HeadLines2" id="kKs-Ga-2Pm"/>
+                    <tabBarItem key="tabBarItem" title="HeadLines" image="HeadLines1" selectedImage="HeadLines2" id="kKs-Ga-2Pm"/>
                     <navigationItem key="navigationItem" title="Top Headlines" id="z7Q-eJ-M2c"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="headlineTableView" destination="LKt-19-22h" id="hSf-PA-un0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rww-0P-VCt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
