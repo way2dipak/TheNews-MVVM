@@ -9,6 +9,10 @@
 import UIKit
 import Kingfisher
 
+protocol CellDelegate {
+    func didTapSourceButton()
+}
+
 class ArticlesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var articleCoverImageView: UIImageView! {
@@ -46,7 +50,7 @@ class ArticlesTableViewCell: UITableViewCell {
         articleTitleLabel.text = details.title
         articleContentTextView.text = details.articleDescription
         articlesPostedOnLabel.text = details.publishedAt
-        sourceButton.setTitle(details.name, for: .normal)
+        sourceButton.setTitle("Source: \(details.name)", for: .normal)
         sourceUrl = details.url
     }
     
