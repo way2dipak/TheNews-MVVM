@@ -36,14 +36,26 @@ extension AppDelegate {
             return
         } else {
             Global.shared.userObj = UserModel(userId: user.userID, idToken: user.authentication.idToken, fullName: user.profile.name, givenName: user.profile.givenName, familyName: user.profile.familyName, email: user.profile.email, image: user.profile.imageURL(withDimension: 30)!.absoluteString)
-            navigateToDashboard()
+            setRootController()
         }
     }
     
-    func navigateToDashboard() {
-        let vc = StoryBoardManager.shared.getStoryboard(name: .DashBoard).instantiateViewController(withIdentifier: DashBoardTabController.identifier) as! DashBoardTabController
-        let rootController = UINavigationController(rootViewController: vc)
-        rootController.isNavigationBarHidden = true
+    func setRootController() {
+        let rootController : UINavigationController
+        if GIDSignIn.sharedInstance()?.hasPreviousSignIn() ?? false {
+            if GIDSignIn.sharedInstance()?.currentUser == nil {
+                GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+                return
+            }
+            let vc = StoryBoardManager.shared.getStoryboard(name: .DashBoard).instantiateViewController(withIdentifier: DashBoardTabController.identifier) as! DashBoardTabController
+            rootController = UINavigationController(rootViewController: vc)
+            rootController.isNavigationBarHidden = true
+        }
+        else {
+            let vc = StoryBoardManager.shared.getStoryboard(name: .Main).instantiateViewController(withIdentifier: LoginViewController.identifier) as! LoginViewController
+            rootController = UINavigationController(rootViewController: vc)
+            rootController.isNavigationBarHidden = true
+        }
         self.window?.rootViewController = rootController
         self.window?.makeKeyAndVisible()
     }

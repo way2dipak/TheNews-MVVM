@@ -234,7 +234,7 @@ extension UIImage {
   }
 }
 
-extension ViewController {
+extension BaseViewController {
     func displayAlert(title: String, message: String) -> Void {
         DispatchQueue.main.async {
             let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -283,6 +283,7 @@ extension ViewController {
         }
     }
 }
+
 
 extension Date {
     func timeAgoSinceDate() -> String {

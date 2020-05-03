@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class DiscoverViewController: BaseViewController {
     
@@ -41,13 +42,17 @@ class DiscoverViewController: BaseViewController {
                 self?.discoverTableView.hideTableView(false)
             }
         }) { [weak self](error) in
-            //self?.displayAlert(title: "Error", message: error)
+            self?.displayAlert(title: "Error", message: error)
             print("Error: \(error)")
         }
     }
 
     override func onTapProfileButton() {
-        
+        displayAlertWithAction(title: "SignOut!", cancelButtonName: "No", message: "Do you want to Signout?", actionButtonName: "Yes, Sign me out") {
+            GIDSignIn.sharedInstance().signOut()
+            let delegate = UIApplication.shared.delegate as? AppDelegate
+            delegate?.setRootController()
+        }
     }
     
 }
