@@ -15,12 +15,15 @@ class DiscoverViewController: BaseViewController {
     @IBOutlet weak var discoverTableView: UITableView!
     
     var articleArray = [DiscoverViewModel]()
+    var pageNo = 1
+    var articlesCount = 100
+    var isLoading: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNib()
         setUpView()
-        fetchNews(for: 1)
+        fetchNews(for: pageNo)
     }
     
     func setUpView() {
@@ -32,11 +35,22 @@ class DiscoverViewController: BaseViewController {
     
     func registerNib() {
         discoverTableView.register(UINib(nibName: ArticlesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ArticlesTableViewCell.identifier)
+        discoverTableView.register(UINib(nibName: LoaderTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: LoaderTableViewCell.identifier)
     }
     
-    func fetchNews(for pageNo: Int) {
+    func fetchNews(for pageNo: Int, clearArray: Bool=false) {
+        
+        print("pageNo == \(pageNo)")
         DiscoverService().fetchDiscover(for: pageNo, result: { [weak self](articles) in
-            self?.articleArray = articles.map({ return DiscoverViewModel(articles: $0) })
+            //self?.articleArray = articles.map({ return DiscoverViewModel(articles: $0) })
+            if clearArray {
+                self?.articleArray.removeAll()
+                
+            }
+            for values in articles {
+                self?.articleArray.append(DiscoverViewModel(articles: values))
+            }
+            self?.pageNo += 1
             DispatchQueue.main.async {
                 self?.discoverTableView.reloadData()
                 self?.discoverTableView.hideTableView(false)
@@ -59,17 +73,41 @@ class DiscoverViewController: BaseViewController {
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articleArray.count
+        return articleArray.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
-        let details = articleArray[indexPath.row]
-        cell.setUpValues(details: details)
-        return cell
+        if indexPath.row < articleArray.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
+            let details = articleArray[indexPath.row]
+            cell.setUpValues(details: details)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
+            cell.activityIndicator.startAnimating()
+            if self.articlesCount != self.articleArray.count {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
+                    self.fetchNews(for: self.pageNo, clearArray: false)
+                }
+            }
+            else {
+                cell.activityIndicator.stopAnimating()
+            }
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if indexPath.row < articleArray.count {
+            return UITableView.automaticDimension
+        }
+        else {
+            if self.articlesCount != self.articleArray.count {
+                return UITableView.automaticDimension
+            }
+            else {
+                return 0
+            }
+        }
     }
 }
