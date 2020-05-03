@@ -14,21 +14,28 @@ class HeadLinesViewController: BaseViewController {
     
     @IBOutlet weak var headlineTableView: UITableView!
     
-    var articlesArray = [ArticleModel]()
-    var totalCount = 100
+    var articlesArray = [DiscoverViewModel]()
+    var totalCount = 38
     var pageCount = 1
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        fetchTopHeadLines(for: 1, clearArray: true)
+        registerNib()
+        //fetchTopHeadLines(for: 1, clearArray: true)
     }
     
     func setUp() {
-        headlineTableView.rowHeight = 405
-        headlineTableView.estimatedRowHeight = UITableView.automaticDimension
+        headlineTableView.estimatedRowHeight = 435
+        headlineTableView.rowHeight = UITableView.automaticDimension
         headlineTableView.tableFooterView = UIView()
+        headlineTableView.hideTableView(true)
+    }
+    
+    func registerNib() {
+        headlineTableView.register(UINib(nibName: ArticlesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ArticlesTableViewCell.identifier)
+        headlineTableView.register(UINib(nibName: LoaderTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: LoaderTableViewCell.identifier)
     }
     
     func fetchTopHeadLines(for PageNo: Int, clearArray: Bool) {
@@ -38,7 +45,7 @@ class HeadLinesViewController: BaseViewController {
             }
             DispatchQueue.main.async {
                 for values in response {
-                    self?.articlesArray.append(values)
+                    self?.articlesArray.append(DiscoverViewModel(articles: values))
                 }
                 self?.pageCount += 1
                 self?.headlineTableView.reloadData()
@@ -54,16 +61,45 @@ class HeadLinesViewController: BaseViewController {
 
 extension HeadLinesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return articlesArray.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
-        
-        return cell
+        if indexPath.row < self.articlesArray.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
+            let details = articlesArray[indexPath.row]
+            cell.setUpValues(details: details)
+            return cell
+            
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
+            if self.totalCount != self.articlesArray.count {
+                cell.activityIndicator.startAnimating()
+                //cell.activityIndicator.isHidden = false
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    print("PageNo: \(self.pageCount)")
+                    self.fetchTopHeadLines(for: self.pageCount, clearArray: false)
+                }
+            }
+            else {
+                cell.activityIndicator.stopAnimating()
+            }
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if indexPath.row < self.articlesArray.count {
+            return UITableView.automaticDimension
+        }
+        else {
+            if self.totalCount != self.articlesArray.count {
+                return UITableView.automaticDimension
+            }
+            else {
+                return 0
+            }
+        }
     }
 }

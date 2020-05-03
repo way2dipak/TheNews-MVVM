@@ -23,6 +23,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="1XI-nw-xSc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LD2-ZS-1Ab"/>
+                    <constraint firstAttribute="bottom" secondItem="1XI-nw-xSc" secondAttribute="bottom" constant="12" id="R7v-Rs-Txc"/>
+                    <constraint firstItem="1XI-nw-xSc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="coU-Of-OxJ"/>
                     <constraint firstItem="1XI-nw-xSc" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="yGX-xB-T2s"/>
                 </constraints>
             </tableViewCellContentView>

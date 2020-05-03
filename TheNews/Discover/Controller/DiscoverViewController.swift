@@ -16,20 +16,20 @@ class DiscoverViewController: BaseViewController {
     
     var articleArray = [DiscoverViewModel]()
     var pageNo = 1
-    var articlesCount = 100
+    var totalCount = 100
     var isLoading: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNib()
         setUpView()
-        fetchNews(for: pageNo)
+        //fetchNews(for: pageNo)
     }
     
     func setUpView() {
         discoverTableView.hideTableView(true)
-        discoverTableView.estimatedRowHeight = UITableView.automaticDimension
-        discoverTableView.rowHeight = 447.5
+        discoverTableView.estimatedRowHeight = 500
+        discoverTableView.rowHeight = UITableView.automaticDimension
         discoverTableView.tableFooterView = UIView()
     }
     
@@ -50,8 +50,8 @@ class DiscoverViewController: BaseViewController {
             for values in articles {
                 self?.articleArray.append(DiscoverViewModel(articles: values))
             }
-            self?.pageNo += 1
             DispatchQueue.main.async {
+                self?.pageNo += 1
                 self?.discoverTableView.reloadData()
                 self?.discoverTableView.hideTableView(false)
             }
@@ -85,8 +85,8 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
             cell.activityIndicator.startAnimating()
-            if self.articlesCount != self.articleArray.count {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
+            if self.totalCount != self.articleArray.count {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.fetchNews(for: self.pageNo, clearArray: false)
                 }
             }
@@ -102,7 +102,7 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableView.automaticDimension
         }
         else {
-            if self.articlesCount != self.articleArray.count {
+            if self.totalCount != self.articleArray.count {
                 return UITableView.automaticDimension
             }
             else {

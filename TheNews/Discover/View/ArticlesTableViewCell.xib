@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75y-fA-4x5">
                         <rect key="frame" x="15" y="10" width="398" height="385"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lY0-u1-ZAY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lY0-u1-ZAY">
                                 <rect key="frame" x="0.0" y="0.0" width="398" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="hDU-bw-zve"/>
@@ -47,7 +47,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eS7-9B-epz">
-                                                <rect key="frame" x="0.0" y="0.0" width="174.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="2" width="174.5" height="26"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <state key="normal" title="Visit Source"/>
                                                 <connections>
                                                     <action selector="onTapVisitSourceButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lQC-Bn-tWh"/>
