@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uaP-PO-v9N">
-                                <rect key="frame" x="0.0" y="96" width="320" height="335"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="WGi-Ku-gcN" id="9oF-sa-DFs"/>
@@ -28,7 +28,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="uaP-PO-v9N" firstAttribute="leading" secondItem="p1K-l3-lGR" secondAttribute="leading" id="4wh-xY-dko"/>
-                            <constraint firstItem="uaP-PO-v9N" firstAttribute="top" secondItem="p1K-l3-lGR" secondAttribute="top" id="Arw-Ps-xrH"/>
+                            <constraint firstItem="uaP-PO-v9N" firstAttribute="top" secondItem="JZI-Wc-xas" secondAttribute="top" id="Arw-Ps-xrH"/>
                             <constraint firstItem="p1K-l3-lGR" firstAttribute="trailing" secondItem="uaP-PO-v9N" secondAttribute="trailing" id="J8k-Ut-tDa"/>
                             <constraint firstItem="p1K-l3-lGR" firstAttribute="bottom" secondItem="uaP-PO-v9N" secondAttribute="bottom" id="kIB-6Z-PBr"/>
                         </constraints>
@@ -69,8 +69,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Discover1" width="24" height="24"/>
-        <image name="Discover2" width="24" height="24"/>
+        <image name="Discover1" width="25" height="25"/>
+        <image name="Discover2" width="25" height="25"/>
         <image name="Profile" width="32" height="32"/>
     </resources>
 </document>

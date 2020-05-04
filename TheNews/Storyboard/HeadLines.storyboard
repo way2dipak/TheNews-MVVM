@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKt-19-22h">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="hAq-pV-jjZ" id="C59-f5-b4L"/>
@@ -28,7 +28,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="LKt-19-22h" firstAttribute="leading" secondItem="hSU-GM-RmC" secondAttribute="leading" id="4UP-12-msx"/>
-                            <constraint firstItem="LKt-19-22h" firstAttribute="top" secondItem="hSU-GM-RmC" secondAttribute="top" id="Zn9-v6-SCK"/>
+                            <constraint firstItem="LKt-19-22h" firstAttribute="top" secondItem="c8H-Q1-FoW" secondAttribute="top" id="Zn9-v6-SCK"/>
                             <constraint firstItem="hSU-GM-RmC" firstAttribute="trailing" secondItem="LKt-19-22h" secondAttribute="trailing" id="foH-3j-eie"/>
                             <constraint firstItem="hSU-GM-RmC" firstAttribute="bottom" secondItem="LKt-19-22h" secondAttribute="bottom" id="l0h-oh-XOt"/>
                         </constraints>
@@ -66,7 +66,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="HeadLines1" width="24" height="24"/>
-        <image name="HeadLines2" width="24" height="24"/>
+        <image name="HeadLines1" width="25" height="25"/>
+        <image name="HeadLines2" width="25" height="25"/>
     </resources>
 </document>

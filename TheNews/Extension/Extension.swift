@@ -125,9 +125,9 @@ extension UITableView {
     func hideTableView(_ value: Bool) {
         DispatchQueue.main.async {
             if value {
-                UIView.animate(withDuration: 0.3) {
+                //UIView.animate(withDuration: 0.0) {
                     self.alpha = 0
-                }
+                //}
             }
             else {
                 UIView.animate(withDuration: 0.3) {

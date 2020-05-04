@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "web (1).png",
+      "filename" : "newspaper1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "newspaper2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "newspaper3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

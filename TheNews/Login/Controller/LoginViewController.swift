@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     
 

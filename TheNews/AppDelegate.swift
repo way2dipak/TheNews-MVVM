@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
         
         GIDSignIn.sharedInstance()?.clientID = "158956149929-mssrkg88kb4j7r93cioi9ivp14roil9h.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
-        
+        setRootController()
         return true
     }
 }
@@ -35,9 +35,14 @@ extension AppDelegate {
             print(error.localizedDescription)
             return
         } else {
-            Global.shared.userObj = UserModel(userId: user.userID, idToken: user.authentication.idToken, fullName: user.profile.name, givenName: user.profile.givenName, familyName: user.profile.familyName, email: user.profile.email, image: user.profile.imageURL(withDimension: 35)!.absoluteString)
             setRootController()
+            Global.shared.userObj = UserModel(userId: user.userID, idToken: user.authentication.idToken, fullName: user.profile.name, givenName: user.profile.givenName, familyName: user.profile.familyName, email: user.profile.email, image: user.profile.imageURL(withDimension: 35)!.absoluteString)
         }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        GIDSignIn.sharedInstance().signOut()
+        setRootController()
     }
     
     func setRootController() {

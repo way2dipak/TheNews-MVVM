@@ -49,6 +49,7 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 3)
         self.navigationController?.navigationBar.layer.shadowRadius = 2
         self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.barStyle = .default
     }
  
     

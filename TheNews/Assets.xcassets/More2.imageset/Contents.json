@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "dots.png",
+      "filename" : "mark11x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "mark12x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "mark13x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
