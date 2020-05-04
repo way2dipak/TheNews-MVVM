@@ -8,22 +8,28 @@
 
 import UIKit
 
-
 class HeadLinesViewController: BaseViewController {
     
-    
-    @IBOutlet weak var headlineTableView: UITableView!
+    @IBOutlet weak var headlineTableView: UITableView! {
+        didSet {
+            let refresh = UIRefreshControl()
+            refresh.tintColor = .black
+            self.headlineTableView.refreshControl = refresh
+            refresh.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
+        }
+    }
     
     var articlesArray = [DiscoverViewModel]()
     var totalCount = 38
-    var pageCount = 1
+    var pageNo = 1
+    var isLoading = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         registerNib()
-        //fetchTopHeadLines(for: 1, clearArray: true)
+        fetchTopHeadLines(for: pageNo)
     }
     
     func setUp() {
@@ -38,7 +44,14 @@ class HeadLinesViewController: BaseViewController {
         headlineTableView.register(UINib(nibName: LoaderTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: LoaderTableViewCell.identifier)
     }
     
-    func fetchTopHeadLines(for PageNo: Int, clearArray: Bool) {
+    @objc func refreshHandler() {
+        pageNo = 1
+        isLoading = false
+        self.headlineTableView.refreshControl?.beginRefreshing()
+        fetchTopHeadLines(for: pageNo, clearArray: true, isResfresh: true)
+    }
+    
+    func fetchTopHeadLines(for PageNo: Int, clearArray: Bool=false, isResfresh: Bool=false) {
         HeadLinesService().fetchTopHeadLines(for: PageNo, result: { [weak self](response) in
             if clearArray {
                 self?.articlesArray.removeAll()
@@ -47,16 +60,23 @@ class HeadLinesViewController: BaseViewController {
                 for values in response {
                     self?.articlesArray.append(DiscoverViewModel(articles: values))
                 }
-                self?.pageCount += 1
+                self?.pageNo += 1
+                self?.isLoading = true
+                if isResfresh {
+                    self?.headlineTableView.refreshControl?.endRefreshing()
+                }
                 self?.headlineTableView.reloadData()
                 self?.headlineTableView.hideTableView(false)
                 
             }
         }) { [weak self](message) in
+            if isResfresh {
+                self?.headlineTableView.refreshControl?.endRefreshing()
+            }
+            self?.isLoading = false
             self?.displayAlert(title: "Error", message: message)
         }
     }
-
 }
 
 extension HeadLinesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -70,20 +90,21 @@ extension HeadLinesViewController: UITableViewDelegate, UITableViewDataSource {
             let details = articlesArray[indexPath.row]
             cell.setUpValues(details: details)
             return cell
-            
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
-            if self.totalCount != self.articlesArray.count {
-                cell.activityIndicator.startAnimating()
-                //cell.activityIndicator.isHidden = false
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    print("PageNo: \(self.pageCount)")
-                    self.fetchTopHeadLines(for: self.pageCount, clearArray: false)
+            if isLoading {
+                if self.totalCount != self.articlesArray.count {
+                    cell.activityIndicator.startAnimating()
+                    DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                        print("PageNo: \(self.pageNo)")
+                        self.fetchTopHeadLines(for: self.pageNo, clearArray: false)
+                    }
                 }
-            }
-            else {
-                cell.activityIndicator.stopAnimating()
+                else {
+                    isLoading = false
+                    cell.activityIndicator.stopAnimating()
+                }
             }
             return cell
         }
@@ -94,8 +115,13 @@ extension HeadLinesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableView.automaticDimension
         }
         else {
-            if self.totalCount != self.articlesArray.count {
-                return UITableView.automaticDimension
+            if isLoading {
+                if self.totalCount != self.articlesArray.count {
+                    return UITableView.automaticDimension
+                }
+                else {
+                    return 0
+                }
             }
             else {
                 return 0

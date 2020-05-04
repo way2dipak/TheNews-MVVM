@@ -12,8 +12,14 @@ import GoogleSignIn
 class DiscoverViewController: BaseViewController {
     
     @IBOutlet weak var profileButton: UIBarButtonItem!
-    @IBOutlet weak var discoverTableView: UITableView!
-    
+    @IBOutlet weak var discoverTableView: UITableView! {
+        didSet {
+            let refresh = UIRefreshControl()
+            refresh.tintColor = .black
+            self.discoverTableView.refreshControl = refresh
+            refresh.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
+        }
+    }
     var articleArray = [DiscoverViewModel]()
     var pageNo = 1
     var totalCount = 100
@@ -23,7 +29,7 @@ class DiscoverViewController: BaseViewController {
         super.viewDidLoad()
         registerNib()
         setUpView()
-        //fetchNews(for: pageNo)
+        fetchNews(for: pageNo)
     }
     
     func setUpView() {
@@ -38,37 +44,40 @@ class DiscoverViewController: BaseViewController {
         discoverTableView.register(UINib(nibName: LoaderTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: LoaderTableViewCell.identifier)
     }
     
-    func fetchNews(for pageNo: Int, clearArray: Bool=false) {
-        
+    @objc func refreshHandler() {
+        pageNo = 1
+        isLoading = false
+        self.discoverTableView.refreshControl?.beginRefreshing()
+        fetchNews(for: pageNo, clearArray: true, isResfresh: true)
+    }
+    
+    func fetchNews(for pageNo: Int, clearArray: Bool=false, isResfresh: Bool=false) {
         print("pageNo == \(pageNo)")
         DiscoverService().fetchDiscover(for: pageNo, result: { [weak self](articles) in
-            //self?.articleArray = articles.map({ return DiscoverViewModel(articles: $0) })
             if clearArray {
                 self?.articleArray.removeAll()
-                
             }
             for values in articles {
                 self?.articleArray.append(DiscoverViewModel(articles: values))
             }
             DispatchQueue.main.async {
                 self?.pageNo += 1
+                self?.isLoading = true
+                if isResfresh {
+                    self?.discoverTableView.refreshControl?.endRefreshing()
+                }
                 self?.discoverTableView.reloadData()
                 self?.discoverTableView.hideTableView(false)
             }
         }) { [weak self](error) in
+            if isResfresh {
+                self?.discoverTableView.refreshControl?.endRefreshing()
+            }
+            self?.isLoading = false
             self?.displayAlert(title: "Error", message: error)
             print("Error: \(error)")
         }
     }
-
-    override func onTapProfileButton() {
-        displayAlertWithAction(title: "SignOut!", cancelButtonName: "No", message: "Do you want to Signout?", actionButtonName: "Yes, Sign me out") {
-            GIDSignIn.sharedInstance().signOut()
-            let delegate = UIApplication.shared.delegate as? AppDelegate
-            delegate?.setRootController()
-        }
-    }
-    
 }
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,16 +91,21 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
             let details = articleArray[indexPath.row]
             cell.setUpValues(details: details)
             return cell
-        } else {
+        }
+        else {
             let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
-            cell.activityIndicator.startAnimating()
-            if self.totalCount != self.articleArray.count {
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    self.fetchNews(for: self.pageNo, clearArray: false)
+            if isLoading {
+                if self.totalCount != self.articleArray.count {
+                    cell.activityIndicator.startAnimating()
+                    DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                        print("PageNo: \(self.pageNo)")
+                        self.fetchNews(for: self.pageNo)
+                    }
                 }
-            }
-            else {
-                cell.activityIndicator.stopAnimating()
+                else {
+                    isLoading = false
+                    cell.activityIndicator.stopAnimating()
+                }
             }
             return cell
         }
@@ -102,8 +116,13 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableView.automaticDimension
         }
         else {
-            if self.totalCount != self.articleArray.count {
-                return UITableView.automaticDimension
+            if isLoading {
+                if self.totalCount != self.articleArray.count {
+                    return UITableView.automaticDimension
+                }
+                else {
+                    return 0
+                }
             }
             else {
                 return 0
