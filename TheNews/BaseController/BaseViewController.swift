@@ -85,6 +85,7 @@ class BaseViewController: UIViewController {
 
 extension BaseViewController: CellDelegate {
     func didTapSourceButton(with url: String) {
+        Global.shared.currentScreenType = .source
         let vc = StoryBoardManager.shared.getStoryboard(name: .Source).instantiateViewController(withIdentifier: SourceWebViewController.identifier) as! SourceWebViewController
         vc.sourcelUrl = url
         self.navigationController?.pushViewController(vc, animated: true)
