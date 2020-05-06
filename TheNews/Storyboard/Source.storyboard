@@ -11,14 +11,40 @@
         <!--Source-->
         <scene sceneID="Pdq-G3-f1t">
             <objects>
-                <viewController id="0HD-aB-m9e" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SourceWebViewController" id="0HD-aB-m9e" customClass="SourceWebViewController" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3BV-Sy-eNq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kKv-LZ-b2o">
+                                <rect key="frame" x="0.0" y="96" width="320" height="384"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration" allowsInlineMediaPlayback="YES">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" audio="YES" video="YES"/>
+                                    <wkPreferences key="preferences" javaScriptCanOpenWindowsAutomatically="YES"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="6OG-OT-AZ3">
+                                <rect key="frame" x="141.5" y="221.5" width="37" height="37"/>
+                                <color key="color" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6OG-OT-AZ3" firstAttribute="centerX" secondItem="3BV-Sy-eNq" secondAttribute="centerX" id="977-mU-JVw"/>
+                            <constraint firstItem="Co5-gz-sfC" firstAttribute="trailing" secondItem="kKv-LZ-b2o" secondAttribute="trailing" id="LfN-bv-BeI"/>
+                            <constraint firstItem="6OG-OT-AZ3" firstAttribute="centerY" secondItem="3BV-Sy-eNq" secondAttribute="centerY" id="UIV-1z-UD4"/>
+                            <constraint firstItem="kKv-LZ-b2o" firstAttribute="leading" secondItem="Co5-gz-sfC" secondAttribute="leading" id="eP5-i5-Gk7"/>
+                            <constraint firstItem="kKv-LZ-b2o" firstAttribute="top" secondItem="Co5-gz-sfC" secondAttribute="top" id="h2g-PW-fJ7"/>
+                            <constraint firstItem="Co5-gz-sfC" firstAttribute="bottom" secondItem="kKv-LZ-b2o" secondAttribute="bottom" id="haB-s4-1zh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Co5-gz-sfC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Source" id="uNh-u2-wDb"/>
+                    <connections>
+                        <outlet property="spinner" destination="6OG-OT-AZ3" id="rol-WK-LJS"/>
+                        <outlet property="webView" destination="kKv-LZ-b2o" id="Lj9-bH-hcb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91W-TG-lIM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -30,7 +56,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4AP-p2-lqr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="o67-iX-leB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

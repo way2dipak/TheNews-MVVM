@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleSignIn
 
 class DiscoverViewController: BaseViewController {
     
@@ -20,10 +19,14 @@ class DiscoverViewController: BaseViewController {
             refresh.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
         }
     }
+    @IBOutlet weak var scrollToTopButton: UIButton!
+    @IBOutlet weak var scrollToTopTrailingConstraint: NSLayoutConstraint!
+    
     var articleArray = [DiscoverViewModel]()
     var pageNo = 1
     var totalCount = 100
     var isLoading: Bool = false
+    var scrollToTop = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,7 @@ class DiscoverViewController: BaseViewController {
         discoverTableView.estimatedRowHeight = 500
         discoverTableView.rowHeight = UITableView.automaticDimension
         discoverTableView.tableFooterView = UIView()
+        scrollToTopButton.alpha = 0
     }
     
     func registerNib() {
@@ -52,7 +56,6 @@ class DiscoverViewController: BaseViewController {
     }
     
     func fetchNews(for pageNo: Int, clearArray: Bool=false, isResfresh: Bool=false) {
-        print("pageNo == \(pageNo)")
         DiscoverService().fetchDiscover(for: pageNo, result: { [weak self](articles) in
             if clearArray {
                 self?.articleArray.removeAll()
@@ -71,11 +74,18 @@ class DiscoverViewController: BaseViewController {
             }
         }) { [weak self](error) in
             if isResfresh {
-                self?.discoverTableView.refreshControl?.endRefreshing()
+                DispatchQueue.main.async {
+                    self?.discoverTableView.refreshControl?.endRefreshing()
+                }
             }
             self?.isLoading = false
             self?.displayAlert(title: "Error", message: error)
-            print("Error: \(error)")
+        }
+    }
+    
+    @IBAction func scrollToTop(_ sender: UIButton) {
+        if articleArray.count != 0 {
+            discoverTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
     }
 }
@@ -90,6 +100,7 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
             let details = articleArray[indexPath.row]
             cell.setUpValues(details: details)
+            cell.cellDelegate = self
             return cell
         }
         else {
@@ -98,7 +109,6 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
                 if self.totalCount != self.articleArray.count {
                     cell.activityIndicator.startAnimating()
                     DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                        print("PageNo: \(self.pageNo)")
                         self.fetchNews(for: self.pageNo)
                     }
                 }
@@ -129,4 +139,38 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        if offsetY > 400 {
+            if scrollToTop {
+                hideScrollButton(isHidden: false)
+                scrollToTop = false
+            }
+        }
+        else {
+            if !scrollToTop {
+                hideScrollButton(isHidden: true)
+                scrollToTop = true
+            }
+        }
+    }
+    
+    func hideScrollButton(isHidden: Bool) {
+        if isHidden {
+            self.scrollToTopTrailingConstraint.constant = -80
+            UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
+                self.scrollToTopButton.alpha = 0
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+        else {
+            self.scrollToTopTrailingConstraint.constant = 20
+            UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
+                self.scrollToTopButton.alpha = 1
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
 }
+

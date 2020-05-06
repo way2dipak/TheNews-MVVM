@@ -24,10 +24,42 @@
                                     <outlet property="delegate" destination="WGi-Ku-gcN" id="AWA-Q8-oP4"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEb-SD-x2J">
+                                <rect key="frame" x="320" y="371" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.98812824489999995" green="0.98829704519999995" blue="0.98811751599999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="aKf-vA-gQD"/>
+                                    <constraint firstAttribute="width" constant="40" id="s2U-nb-9Tv"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="ScrollUp"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="scrollToTop:" destination="WGi-Ku-gcN" eventType="touchUpInside" id="IjD-2L-8Fb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="p1K-l3-lGR" firstAttribute="bottom" secondItem="bEb-SD-x2J" secondAttribute="bottom" constant="20" id="1PU-HN-31V"/>
                             <constraint firstItem="uaP-PO-v9N" firstAttribute="leading" secondItem="p1K-l3-lGR" secondAttribute="leading" id="4wh-xY-dko"/>
+                            <constraint firstItem="p1K-l3-lGR" firstAttribute="trailing" secondItem="bEb-SD-x2J" secondAttribute="trailing" constant="-40" id="7Ok-q4-rtj"/>
                             <constraint firstItem="uaP-PO-v9N" firstAttribute="top" secondItem="JZI-Wc-xas" secondAttribute="top" id="Arw-Ps-xrH"/>
                             <constraint firstItem="p1K-l3-lGR" firstAttribute="trailing" secondItem="uaP-PO-v9N" secondAttribute="trailing" id="J8k-Ut-tDa"/>
                             <constraint firstItem="p1K-l3-lGR" firstAttribute="bottom" secondItem="uaP-PO-v9N" secondAttribute="bottom" id="kIB-6Z-PBr"/>
@@ -42,6 +74,8 @@
                     <connections>
                         <outlet property="discoverTableView" destination="uaP-PO-v9N" id="vrG-x1-d7D"/>
                         <outlet property="profileButton" destination="4tL-0D-ayX" id="o9Z-P1-c4K"/>
+                        <outlet property="scrollToTopButton" destination="bEb-SD-x2J" id="aac-I9-taE"/>
+                        <outlet property="scrollToTopTrailingConstraint" destination="7Ok-q4-rtj" id="Bnm-7k-Ug0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVI-S7-3Mm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -71,6 +105,7 @@
     <resources>
         <image name="Discover1" width="25" height="25"/>
         <image name="Discover2" width="25" height="25"/>
-        <image name="Profile" width="32" height="32"/>
+        <image name="Profile" width="25" height="25"/>
+        <image name="ScrollUp" width="75" height="75"/>
     </resources>
 </document>

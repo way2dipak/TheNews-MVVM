@@ -247,7 +247,10 @@ extension BaseViewController {
     func displayAlertWithAction(title: String, cancelButtonName: String, message: String, actionButtonName: String, action: @escaping (()-> Void)) -> Void {
         DispatchQueue.main.async {
             let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let okButton = UIAlertAction(title: cancelButtonName, style: .default, handler: nil)
+            let okButton = UIAlertAction(title: cancelButtonName, style: .default) {
+                (handler) in
+                self.navigationController?.popViewController(animated: true)
+            }
             let retryButton = UIAlertAction(title: actionButtonName, style: .destructive) { (handler) in
                 action()
             }

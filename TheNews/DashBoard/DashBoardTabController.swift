@@ -13,18 +13,25 @@ class DashBoardTabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.delegate = self
+        Global.shared.currentScreenType = .discover
     }
     
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension DashBoardTabController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        switch tabBarController.selectedIndex {
+        case 0:
+            Global.shared.currentScreenType = .discover
+        case 1:
+            Global.shared.currentScreenType = .search
+        case 2:
+            Global.shared.currentScreenType = .headlines
+        case 3:
+            Global.shared.currentScreenType = .more
+        default:
+            Global.shared.currentScreenType = .none
+        }
     }
-    */
-
 }

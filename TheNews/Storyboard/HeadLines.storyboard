@@ -24,11 +24,43 @@
                                     <outlet property="delegate" destination="hAq-pV-jjZ" id="fkH-AX-hK0"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWA-dw-jYy">
+                                <rect key="frame" x="414" y="753" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="WLa-4W-8hw"/>
+                                    <constraint firstAttribute="height" constant="40" id="cZ7-rR-fqG"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="ScrollUp"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="scrollToTop:" destination="hAq-pV-jjZ" eventType="touchUpInside" id="BoW-3x-1vt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="LKt-19-22h" firstAttribute="leading" secondItem="hSU-GM-RmC" secondAttribute="leading" id="4UP-12-msx"/>
+                            <constraint firstItem="hSU-GM-RmC" firstAttribute="trailing" secondItem="uWA-dw-jYy" secondAttribute="trailing" constant="-40" id="6ZE-MT-dyT"/>
                             <constraint firstItem="LKt-19-22h" firstAttribute="top" secondItem="c8H-Q1-FoW" secondAttribute="top" id="Zn9-v6-SCK"/>
+                            <constraint firstItem="hSU-GM-RmC" firstAttribute="bottom" secondItem="uWA-dw-jYy" secondAttribute="bottom" constant="20" id="fgu-zI-BUv"/>
                             <constraint firstItem="hSU-GM-RmC" firstAttribute="trailing" secondItem="LKt-19-22h" secondAttribute="trailing" id="foH-3j-eie"/>
                             <constraint firstItem="hSU-GM-RmC" firstAttribute="bottom" secondItem="LKt-19-22h" secondAttribute="bottom" id="l0h-oh-XOt"/>
                         </constraints>
@@ -39,6 +71,8 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="headlineTableView" destination="LKt-19-22h" id="hSf-PA-un0"/>
+                        <outlet property="scrollToTopButton" destination="uWA-dw-jYy" id="mnN-oK-cam"/>
+                        <outlet property="scrollToTopTrailingConstraint" destination="6ZE-MT-dyT" id="sJd-BH-TYc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rww-0P-VCt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -68,5 +102,6 @@
     <resources>
         <image name="HeadLines1" width="25" height="25"/>
         <image name="HeadLines2" width="25" height="25"/>
+        <image name="ScrollUp" width="75" height="75"/>
     </resources>
 </document>

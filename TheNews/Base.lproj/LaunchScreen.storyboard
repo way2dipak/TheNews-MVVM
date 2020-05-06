@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The News" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7n-TU-ZBm">
-                                <rect key="frame" x="107" y="352.5" width="200" height="191.5"/>
+                                <rect key="frame" x="127" y="352.5" width="200" height="191.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="l01-cO-W9R"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="k7n-TU-ZBm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CDx-Ze-KR5"/>
+                            <constraint firstItem="k7n-TU-ZBm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="20" id="CDx-Ze-KR5"/>
                             <constraint firstItem="k7n-TU-ZBm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Xeg-pQ-Jpl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

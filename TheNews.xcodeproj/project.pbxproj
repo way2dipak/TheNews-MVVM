@@ -19,6 +19,7 @@
 		9D4CD946245EC36500A466D4 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4CD945245EC36500A466D4 /* UserViewModel.swift */; };
 		9D4CD949245EC3DE00A466D4 /* LoaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D4CD947245EC3DE00A466D4 /* LoaderTableViewCell.xib */; };
 		9D4CD94A245EC3DE00A466D4 /* LoaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4CD948245EC3DE00A466D4 /* LoaderTableViewCell.swift */; };
+		9D4CD956246296F000A466D4 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4CD955246296F000A466D4 /* SearchService.swift */; };
 		9D6F4F7D245D55F700C73649 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4F7C245D55F700C73649 /* MoreViewController.swift */; };
 		9D6F4F7F245D560900C73649 /* HeadLinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4F7E245D560900C73649 /* HeadLinesViewController.swift */; };
 		9D6F4F81245D561900C73649 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F4F80245D561900C73649 /* SearchViewController.swift */; };
@@ -68,6 +69,7 @@
 		9D4CD945245EC36500A466D4 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = TheNews/Login/UserViewModel/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
 		9D4CD947245EC3DE00A466D4 /* LoaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoaderTableViewCell.xib; sourceTree = "<group>"; };
 		9D4CD948245EC3DE00A466D4 /* LoaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderTableViewCell.swift; sourceTree = "<group>"; };
+		9D4CD955246296F000A466D4 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		9D6F4F7C245D55F700C73649 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		9D6F4F7E245D560900C73649 /* HeadLinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadLinesViewController.swift; sourceTree = "<group>"; };
 		9D6F4F80245D561900C73649 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				9D6F4F80245D561900C73649 /* SearchViewController.swift */,
+				9D4CD955246296F000A466D4 /* SearchService.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				9D6F4F8E245D5E1400C73649 /* Extension.swift in Sources */,
 				9D6F4F81245D561900C73649 /* SearchViewController.swift in Sources */,
 				9D02143F245EA135006CAF6D /* SourceWebViewController.swift in Sources */,
+				9D4CD956246296F000A466D4 /* SearchService.swift in Sources */,
 				9D4CD94A245EC3DE00A466D4 /* LoaderTableViewCell.swift in Sources */,
 				9D6F4F91245D5E5500C73649 /* NetworkManager.swift in Sources */,
 				9D6F4F7F245D560900C73649 /* HeadLinesViewController.swift in Sources */,
