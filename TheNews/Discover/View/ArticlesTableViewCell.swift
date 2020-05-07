@@ -18,7 +18,7 @@ class ArticlesTableViewCell: UITableViewCell {
     @IBOutlet weak var articleCoverImageView: UIImageView! {
         didSet{
             self.articleCoverImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            self.articleCoverImageView.cornerRadius = 10
+            self.articleCoverImageView.cornerRadius = 8
         }
     }
     @IBOutlet weak var articleTitleLabel: UILabel!
