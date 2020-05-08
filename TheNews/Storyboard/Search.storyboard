@@ -24,6 +24,9 @@
                                     <outlet property="delegate" destination="CQ2-fm-ec5" id="aOU-d2-D56"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="6hh-WA-8Oq">
+                                <rect key="frame" x="4" y="269" width="406" height="358"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDn-El-mfW">
                                 <rect key="frame" x="414" y="753" width="40" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -57,9 +60,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="6hh-WA-8Oq" firstAttribute="width" secondItem="EbN-1W-C79" secondAttribute="width" multiplier="0.98" id="3RP-14-giB"/>
                             <constraint firstItem="g5N-RZ-z95" firstAttribute="bottom" secondItem="uou-Ph-dcP" secondAttribute="bottom" id="3rQ-oB-GlM"/>
+                            <constraint firstItem="6hh-WA-8Oq" firstAttribute="centerY" secondItem="EbN-1W-C79" secondAttribute="centerY" id="9Bf-9L-NEH"/>
                             <constraint firstItem="uou-Ph-dcP" firstAttribute="top" secondItem="EbN-1W-C79" secondAttribute="top" id="AEU-Rq-4Cz"/>
+                            <constraint firstItem="6hh-WA-8Oq" firstAttribute="height" secondItem="EbN-1W-C79" secondAttribute="height" multiplier="0.4" id="Chd-0V-Jw6"/>
                             <constraint firstItem="g5N-RZ-z95" firstAttribute="trailing" secondItem="uou-Ph-dcP" secondAttribute="trailing" id="I8V-3Q-txI"/>
+                            <constraint firstItem="6hh-WA-8Oq" firstAttribute="centerX" secondItem="EbN-1W-C79" secondAttribute="centerX" id="PKZ-bs-uML"/>
                             <constraint firstItem="uou-Ph-dcP" firstAttribute="leading" secondItem="g5N-RZ-z95" secondAttribute="leading" id="bUL-2n-hDA"/>
                             <constraint firstItem="g5N-RZ-z95" firstAttribute="bottom" secondItem="gDn-El-mfW" secondAttribute="bottom" constant="20" id="xGo-ar-scp"/>
                             <constraint firstItem="g5N-RZ-z95" firstAttribute="trailing" secondItem="gDn-El-mfW" secondAttribute="trailing" constant="-40" id="xRF-kB-MB6"/>
@@ -72,6 +79,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="defaultImageView" destination="6hh-WA-8Oq" id="Yiu-8e-Ipm"/>
                         <outlet property="scrollToTopButton" destination="gDn-El-mfW" id="zGe-vp-oUM"/>
                         <outlet property="scrollToTopTrailingConstraint" destination="xRF-kB-MB6" id="AEu-Gt-R47"/>
                         <outlet property="searchTableView" destination="uou-Ph-dcP" id="s7b-YC-osD"/>
@@ -79,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEf-x1-nHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="115"/>
+            <point key="canvasLocation" x="813.04347826086962" y="114.50892857142857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hQx-5b-Sui">
@@ -106,5 +114,6 @@
         <image name="ScrollUp" width="75" height="75"/>
         <image name="Search1" width="25" height="25"/>
         <image name="Search2" width="25" height="25"/>
+        <image name="SearchBackground" width="664" height="510"/>
     </resources>
 </document>

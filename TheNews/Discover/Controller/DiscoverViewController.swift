@@ -30,6 +30,7 @@ class DiscoverViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentScreenType = .discover
         registerNib()
         setUpView()
         fetchNews(for: pageNo)
@@ -128,7 +129,7 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             if isLoading {
                 if self.totalCount != self.articleArray.count {
-                    return UITableView.automaticDimension
+                    return 60
                 }
                 else {
                     return 0
@@ -140,8 +141,11 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
+        scrollViewDidScroll(with: offsetY)
         if offsetY > 400 {
             if scrollToTop {
                 hideScrollButton(isHidden: false)

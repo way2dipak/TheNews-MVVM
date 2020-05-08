@@ -18,15 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="1XI-nw-xSc">
-                        <rect key="frame" x="188.5" y="12" width="37" height="36"/>
+                        <rect key="frame" x="188.5" y="11.5" width="37" height="37"/>
                         <color key="color" red="0.58431372550000005" green="0.66666666669999997" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                     </activityIndicatorView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="1XI-nw-xSc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LD2-ZS-1Ab"/>
-                    <constraint firstAttribute="bottom" secondItem="1XI-nw-xSc" secondAttribute="bottom" constant="12" id="R7v-Rs-Txc"/>
-                    <constraint firstItem="1XI-nw-xSc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="coU-Of-OxJ"/>
-                    <constraint firstItem="1XI-nw-xSc" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="yGX-xB-T2s"/>
+                    <constraint firstItem="1XI-nw-xSc" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="H8Z-MH-2PP"/>
+                    <constraint firstItem="1XI-nw-xSc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="u4z-Wh-V0P"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

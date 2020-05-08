@@ -11,11 +11,24 @@
         <!--More-->
         <scene sceneID="DrT-v8-1AB">
             <objects>
-                <viewController id="HXc-RM-Hw3" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoreViewController" id="HXc-RM-Hw3" customClass="MoreViewController" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ysh-cH-B0C">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hyf-hl-1am">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <sections/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Je6-bx-piT" firstAttribute="trailing" secondItem="Hyf-hl-1am" secondAttribute="trailing" id="6nb-Oc-Nq5"/>
+                            <constraint firstItem="Hyf-hl-1am" firstAttribute="leading" secondItem="Je6-bx-piT" secondAttribute="leading" id="U5z-jy-5a2"/>
+                            <constraint firstItem="Hyf-hl-1am" firstAttribute="top" secondItem="Ysh-cH-B0C" secondAttribute="top" id="cfC-cf-awH"/>
+                            <constraint firstItem="Je6-bx-piT" firstAttribute="bottom" secondItem="Hyf-hl-1am" secondAttribute="bottom" id="j6u-Yh-RPs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Je6-bx-piT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="More" image="More1" selectedImage="More2" id="nY9-tB-5IA"/>
@@ -24,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZjB-KG-ba7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="115"/>
+            <point key="canvasLocation" x="813.04347826086962" y="114.50892857142857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TuL-Zv-gln">
@@ -47,7 +60,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="More1" width="24" height="24"/>
-        <image name="More2" width="24" height="24"/>
+        <image name="More1" width="25" height="25"/>
+        <image name="More2" width="25" height="25"/>
     </resources>
 </document>

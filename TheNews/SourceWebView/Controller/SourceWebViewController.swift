@@ -51,4 +51,9 @@ extension SourceWebViewController: WKNavigationDelegate {
             self.loadUrl(with: self.sourcelUrl)
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        scrollViewDidScroll(with: offsetY)
+    }
 }

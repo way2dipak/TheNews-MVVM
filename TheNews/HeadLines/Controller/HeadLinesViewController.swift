@@ -29,6 +29,7 @@ class HeadLinesViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentScreenType = .headlines
         setUp()
         registerNib()
         fetchTopHeadLines(for: pageNo)
@@ -79,7 +80,12 @@ class HeadLinesViewController: BaseViewController {
                 }
             }
             self?.isLoading = false
-            self?.displayAlert(title: "Error", message: message)
+            if message != "" {
+                self?.displayAlert(title: "Error", message: message)
+            }
+            DispatchQueue.main.async {
+                self?.headlineTableView.reloadData()
+            }
         }
     }
     
@@ -142,6 +148,7 @@ extension HeadLinesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
+        scrollViewDidScroll(with: offsetY)
         if offsetY > 400 {
             if scrollToTop {
                 hideScrollButton(isHidden: false)

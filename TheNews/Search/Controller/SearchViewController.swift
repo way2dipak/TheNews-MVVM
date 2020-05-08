@@ -22,16 +22,24 @@ class SearchViewController: BaseViewController {
     
     @IBOutlet weak var scrollToTopButton: UIButton!
     @IBOutlet weak var scrollToTopTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var defaultImageView: UIImageView!
     
+    let searchController = UISearchController(searchResultsController: nil)
     var articleArray = [DiscoverViewModel]()
     var pageNo = 1
-    var totalCount = 100
+    var totalCount = 0
     var isLoading: Bool = false
     var scrollToTop = false
     var query = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentScreenType = .search
+        searchController.searchBar.delegate = self
         registerNib()
         setUpView()
         //getSearchResults(for: pageNo)
@@ -60,7 +68,7 @@ class SearchViewController: BaseViewController {
     }
     
     func getSearchResults(with query: String, for pageNo: Int, clearArray: Bool=false, isResfresh: Bool=false) {
-        SearchService().fetchResults(with: query, for: pageNo, result: { [weak self](articles) in
+        SearchService().fetchResults(with: query, for: pageNo, result: { [weak self](articles, totalCounts) in
             if clearArray {
                 self?.articleArray.removeAll()
             }
@@ -68,22 +76,29 @@ class SearchViewController: BaseViewController {
                 self?.articleArray.append(DiscoverViewModel(articles: values))
             }
             DispatchQueue.main.async {
+                self?.totalCount = totalCounts
                 self?.pageNo += 1
                 self?.isLoading = true
                 if isResfresh {
                     self?.searchTableView.refreshControl?.endRefreshing()
                 }
                 self?.searchTableView.reloadData()
+                self?.defaultImageView.hideView(true)
                 self?.searchTableView.hideTableView(false)
             }
-        }) { [weak self](error) in
+        }) { [weak self](message) in
             if isResfresh {
                 DispatchQueue.main.async {
                     self?.searchTableView.refreshControl?.endRefreshing()
                 }
             }
             self?.isLoading = false
-            self?.displayAlert(title: "Error", message: error)
+            if message != "" {
+                self?.displayAlert(title: "Error", message: message)
+            }
+            DispatchQueue.main.async {
+                self?.searchTableView.reloadData()
+            }
         }
     }
     
@@ -93,15 +108,20 @@ class SearchViewController: BaseViewController {
         }
     }
     
-    override func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text {
-            query = searchText
-            if query.count >= 3 {
-              self.getSearchResults(with: query, for: pageNo, clearArray: true)
-            }
+    override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        query = searchText
+        if query.count >= 4 {
+            self.pageNo = 1
+          self.getSearchResults(with: query, for: pageNo, clearArray: true)
         }
     }
     
+    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        //searchBar.searchTextField.text = query
+        searchBar.setShowsCancelButton(false, animated: true)
+        scrollToTop(UIButton())
+    }
     
 }
 
@@ -157,6 +177,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
+        scrollViewDidScroll(with: offsetY)
         if offsetY > 400 {
             if scrollToTop {
                 hideScrollButton(isHidden: false)
@@ -188,5 +209,4 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
 

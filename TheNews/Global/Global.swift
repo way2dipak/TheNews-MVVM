@@ -13,17 +13,7 @@ class Global {
     static let shared = Global()
     
     var userObj: UserModel?
-    
-     enum ScreenType {
-        case discover
-        case search
-        case headlines
-        case more
-        case source
-        case none
-    }
-    
-    var currentScreenType: ScreenType = .none
+
 }
 
 
