@@ -21,9 +21,21 @@ class ArticlesTableViewCell: UITableViewCell {
             self.articleCoverImageView.cornerRadius = 8
         }
     }
-    @IBOutlet weak var articleTitleLabel: UILabel!
-    @IBOutlet weak var articleContentTextView: UITextView!
-    @IBOutlet weak var articlesPostedOnLabel: UILabel!
+    @IBOutlet weak var articleTitleLabel: UILabel! {
+        didSet {
+            self.articleTitleLabel.adjustsFontForContentSizeCategory = true
+        }
+    }
+    @IBOutlet weak var articleContentTextView: UITextView! {
+        didSet {
+            self.articleContentTextView.adjustsFontForContentSizeCategory = true
+        }
+    }
+    @IBOutlet weak var articlesPostedOnLabel: UILabel! {
+           didSet {
+               self.articlesPostedOnLabel.adjustsFontForContentSizeCategory = true
+           }
+       }
     @IBOutlet weak var sourceButton: UIButton!
     
     var sourceUrl = ""

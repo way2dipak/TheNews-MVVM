@@ -25,6 +25,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="hDU-bw-zve">
                                         <variation key="heightClass=compact-widthClass=regular" constant="300"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="400"/>
                                     </constraint>
                                 </constraints>
                             </imageView>
@@ -33,6 +34,9 @@
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="40"/>
+                                </variation>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvY-Bo-aVu">
                                 <rect key="frame" x="15" y="247.33333333333329" width="368" height="92.666666666666657"/>
@@ -41,6 +45,9 @@
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
+                                </variation>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jY-8I-mvc">
                                 <rect key="frame" x="15" y="345" width="368" height="30"/>
@@ -52,6 +59,9 @@
                                                 <rect key="frame" x="0.0" y="3" width="221" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <state key="normal" title="Visit Source: Times of India"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="onTapVisitSourceButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lQC-Bn-tWh"/>
                                                 </connections>
@@ -61,6 +71,9 @@
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="10"/>
                                                 <color key="textColor" red="0.58431372549019611" green="0.66666666666666663" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                                </variation>
                                             </label>
                                         </subviews>
                                     </stackView>
@@ -70,7 +83,9 @@
                                     <constraint firstAttribute="trailing" secondItem="tgm-Vb-RWw" secondAttribute="trailing" constant="9" id="4tS-hR-N4i"/>
                                     <constraint firstItem="tgm-Vb-RWw" firstAttribute="leading" secondItem="8jY-8I-mvc" secondAttribute="leading" id="MS5-dq-mnQ"/>
                                     <constraint firstAttribute="bottom" secondItem="tgm-Vb-RWw" secondAttribute="bottom" id="WxY-NH-TDg"/>
-                                    <constraint firstAttribute="height" constant="30" id="qZj-Hq-MbA"/>
+                                    <constraint firstAttribute="height" constant="30" id="qZj-Hq-MbA">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                                    </constraint>
                                     <constraint firstItem="tgm-Vb-RWw" firstAttribute="top" secondItem="8jY-8I-mvc" secondAttribute="top" id="tIO-w8-qWA"/>
                                 </constraints>
                             </view>
@@ -78,8 +93,12 @@
                                 <rect key="frame" x="373" y="5" width="20" height="20"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.49927761130136988" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="87y-eq-hZs"/>
-                                    <constraint firstAttribute="width" constant="20" id="mOd-U7-l97"/>
+                                    <constraint firstAttribute="height" constant="20" id="87y-eq-hZs">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="20" id="mOd-U7-l97">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                    </constraint>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>

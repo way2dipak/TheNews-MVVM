@@ -24,7 +24,7 @@
                                     <outlet property="delegate" destination="CQ2-fm-ec5" id="aOU-d2-D56"/>
                                 </connections>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="6hh-WA-8Oq">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="6hh-WA-8Oq">
                                 <rect key="frame" x="4" y="269" width="406" height="358"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDn-El-mfW">
