@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        GIDSignIn.sharedInstance()?.clientID = "158956149929-mssrkg88kb4j7r93cioi9ivp14roil9h.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.clientID = Global.shared.clientID
         GIDSignIn.sharedInstance()?.delegate = self
         setRootController()
         return true
@@ -52,12 +52,12 @@ extension AppDelegate {
                 GIDSignIn.sharedInstance()?.restorePreviousSignIn()
                 return
             }
-            let vc = StoryBoardManager.shared.getStoryboard(name: .DashBoard).instantiateViewController(withIdentifier: DashBoardTabController.identifier) as! DashBoardTabController
+            let vc = StoryBoardManager.shared.getStoryboard(name: .SetUp).instantiateViewController(withIdentifier: SetUpViewController.identifier) as! SetUpViewController
             rootController = UINavigationController(rootViewController: vc)
             rootController.isNavigationBarHidden = true
         }
         else {
-            let vc = StoryBoardManager.shared.getStoryboard(name: .Main).instantiateViewController(withIdentifier: LoginViewController.identifier) as! LoginViewController
+            let vc = StoryBoardManager.shared.getStoryboard(name: .Login).instantiateViewController(withIdentifier: LoginViewController.identifier) as! LoginViewController
             rootController = UINavigationController(rootViewController: vc)
             rootController.isNavigationBarHidden = true
         }

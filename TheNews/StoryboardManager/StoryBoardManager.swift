@@ -16,9 +16,11 @@ class StoryBoardManager {
     
     enum StoryBoardName: String {
         case Main = "Main"
+        case Login = "Login"
+        case SetUp = "SetUp"
         case DashBoard = "Dashboard"
         case Discover = "Discover"
-        case Search = "Search"
+        case Corona = "Corona"
         case HeadLines = "HeadLines"
         case More = "More"
         case Source = "Source"

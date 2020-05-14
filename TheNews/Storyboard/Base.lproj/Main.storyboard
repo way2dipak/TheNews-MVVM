@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ptJ-jl-cxj">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,46 +8,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--View Controller-->
+        <scene sceneID="rn6-uo-TDD">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="ptJ-jl-cxj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ACP-hT-HQp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The News" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8n-fz-dbq">
-                                <rect key="frame" x="85" y="71.5" width="150" height="137"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The News" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqV-xF-xxQ">
+                                <rect key="frame" x="80" y="144.5" width="200" height="191.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="hIn-G0-mrg"/>
+                                    <constraint firstAttribute="width" constant="200" id="7Ze-iI-YCC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="50"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="70"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7QF-1o-Cm6" customClass="GIDSignInButton">
-                                <rect key="frame" x="85" y="228.5" width="150" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="YaJ-dq-CxH"/>
-                                    <constraint firstAttribute="width" constant="150" id="a7Y-Nq-lqa"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="b8n-fz-dbq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="L9B-ut-S7u"/>
-                            <constraint firstItem="7QF-1o-Cm6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pag-hV-p2a"/>
-                            <constraint firstItem="b8n-fz-dbq" firstAttribute="centerX" secondItem="7QF-1o-Cm6" secondAttribute="centerX" id="QVE-eJ-22Q"/>
-                            <constraint firstItem="7QF-1o-Cm6" firstAttribute="top" secondItem="b8n-fz-dbq" secondAttribute="bottom" constant="20" id="R1X-Ba-jyj"/>
+                            <constraint firstItem="MqV-xF-xxQ" firstAttribute="centerX" secondItem="ACP-hT-HQp" secondAttribute="centerX" constant="20" id="gLy-2T-deZ"/>
+                            <constraint firstItem="MqV-xF-xxQ" firstAttribute="centerY" secondItem="ACP-hT-HQp" secondAttribute="centerY" id="pHF-if-nhk"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="69j-52-npI"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0eg-4R-1r2"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZn-Fu-WGG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="218" y="141"/>
+            <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
 </document>

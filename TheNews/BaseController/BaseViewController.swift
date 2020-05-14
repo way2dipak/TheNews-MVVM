@@ -12,7 +12,7 @@ import GoogleSignIn
 
 enum ScreenType {
     case discover
-    case search
+    case corona
     case headlines
     case more
     case source
@@ -27,14 +27,15 @@ class BaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.rightBarButtonItem = getRightBarButton()
-        navigationItem.searchController = getSearchInNavbar()
-
+        layoutCustomizationToNavBar()
+        if currentScreenType != .corona {
+            navigationItem.rightBarButtonItem = getRightBarButton()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layoutCustomizationToNavBar()
+        
     }
     
     func getRightBarButton() -> UIBarButtonItem? {
@@ -57,7 +58,7 @@ class BaseViewController: UIViewController {
     }
     
     func getSearchInNavbar()-> UISearchController? {
-        if currentScreenType == .search {
+        if currentScreenType == .corona {
             //self.navigationController?.navigationItem.largeTitleDisplayMode = .never
             self.navigationItem.hidesSearchBarWhenScrolling = false
             let search = UISearchController(searchResultsController: nil)
@@ -72,18 +73,16 @@ class BaseViewController: UIViewController {
     }
     
     func layoutCustomizationToNavBar() {
-        self.navigationController?.navigationBar.layer.masksToBounds = false
-        navigationController?.navigationBar.shadowImage = UIImage()
-        
-//        if Global.shared.currentScreenType != .search {
-//            self.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
-//            self.navigationController?.navigationBar.layer.shadowOpacity = 0.5
-//            self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 3)
-//            self.navigationController?.navigationBar.layer.shadowRadius = 2
-//        }
-        
-        self.navigationController?.navigationBar.barTintColor = .white
-        self.navigationController?.navigationBar.barStyle = .default
+        if currentScreenType != .corona {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.navigationBar.layer.masksToBounds = false
+            navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.barTintColor = .white
+            self.navigationController?.navigationBar.barStyle = .default
+        }
+        else {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -91,12 +90,15 @@ class BaseViewController: UIViewController {
     }
     
     func scrollViewDidScroll(with offsetY: CGFloat) {
-        if offsetY > -80.0 {
-            addShadowToNavigationBar(addShadow: true)
+        if currentScreenType != .corona {
+            if offsetY > -80.0 {
+                addShadowToNavigationBar(addShadow: true)
+            }
+            else {
+                addShadowToNavigationBar(addShadow: false)
+            }
         }
-        else {
-            addShadowToNavigationBar(addShadow: false)
-        }
+        
     }
     
     func addShadowToNavigationBar(addShadow: Bool) {

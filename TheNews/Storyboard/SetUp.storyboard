@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJk-fh-Fa0">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Set Up View Controller-->
+        <scene sceneID="xvh-8b-jjC">
+            <objects>
+                <viewController storyboardIdentifier="SetUpViewController" id="Oqa-Sg-Lxf" customClass="SetUpViewController" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sI5-Mx-XCo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="NIq-vV-6mH">
+                                <rect key="frame" x="188.5" y="805" width="37" height="37"/>
+                                <color key="color" red="0.58431372550000005" green="0.66666666669999997" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The News" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8Z-Im-OLq">
+                                <rect key="frame" x="127" y="352.5" width="200" height="191.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="VHZ-ud-xeA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="70"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="d8Z-Im-OLq" firstAttribute="centerY" secondItem="sI5-Mx-XCo" secondAttribute="centerY" id="7O3-d4-iZ0"/>
+                            <constraint firstItem="NIq-vV-6mH" firstAttribute="centerX" secondItem="sI5-Mx-XCo" secondAttribute="centerX" id="SU3-CW-dZS"/>
+                            <constraint firstItem="Lsk-fi-Peq" firstAttribute="bottom" secondItem="NIq-vV-6mH" secondAttribute="bottom" constant="20" id="X62-mA-Ung"/>
+                            <constraint firstItem="d8Z-Im-OLq" firstAttribute="centerX" secondItem="sI5-Mx-XCo" secondAttribute="centerX" constant="20" id="z0d-DB-3TV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lsk-fi-Peq"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yTJ-cy-qi6"/>
+                    <connections>
+                        <outlet property="spinner" destination="NIq-vV-6mH" id="aTi-61-LFR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gg5-AZ-sMj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2548" y="-185"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bGa-dt-l0f">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZJk-fh-Fa0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="efb-tL-1KO">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Oqa-Sg-Lxf" kind="relationship" relationship="rootViewController" id="BiW-f1-mdp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yot-qB-n4K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1730.625" y="-185"/>
+        </scene>
+    </scenes>
+</document>

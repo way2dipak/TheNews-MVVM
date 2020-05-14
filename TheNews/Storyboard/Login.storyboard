@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="n5R-3X-i7M">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="OFU-KV-GwO" customClass="LoginViewController" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kQQ-k1-sPI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The News" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTd-Z0-Shf">
+                                <rect key="frame" x="132" y="279.5" width="150" height="137"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Z4E-fX-j5F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tt-my-aBm" customClass="GIDSignInButton">
+                                <rect key="frame" x="132" y="436.5" width="150" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6LR-r2-Zva"/>
+                                    <constraint firstAttribute="width" constant="150" id="lNu-AE-hqg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3tt-my-aBm" firstAttribute="top" secondItem="kTd-Z0-Shf" secondAttribute="bottom" constant="20" id="Iva-zz-1vF"/>
+                            <constraint firstItem="kTd-Z0-Shf" firstAttribute="centerY" secondItem="kQQ-k1-sPI" secondAttribute="centerY" constant="-100" id="Y1T-VL-jIy"/>
+                            <constraint firstItem="kTd-Z0-Shf" firstAttribute="centerX" secondItem="3tt-my-aBm" secondAttribute="centerX" id="YlI-yN-cqz"/>
+                            <constraint firstItem="3tt-my-aBm" firstAttribute="centerX" secondItem="kQQ-k1-sPI" secondAttribute="centerX" id="hH1-NF-Nze"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jio-IN-Yyh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5i2-88-01k"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Df-WY-wZE" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="218" y="141"/>
+        </scene>
+    </scenes>
+</document>

@@ -28,7 +28,7 @@ class NetworkManager {
     }
     private var task: URLSessionDataTask? = nil
     
-    func httpRequestWith<T : Codable>(link: String, method: HTTPMethod, headers: [String:String], params: [String:Any], model: T.Type, onSuccess: @escaping((T)->()), onFailure: @escaping((String)->())) {
+    func httpRequestWith<T : Codable>(link: String, method: HTTPMethod, headers: [String:String], params: [String:Any], onSuccess: @escaping((T)->()), onFailure: @escaping((String)->())) {
         let url = URL(string: link.replacingOccurrences(of: " ", with: "%20"))!
         var urlRequest = URLRequest(url: url)
         print("URLRequest: \(urlRequest)")
@@ -57,7 +57,7 @@ class NetworkManager {
                     
                     let decoder = JSONDecoder()
                     do {
-                        let result = try decoder.decode(model.self, from: newData)
+                        let result = try decoder.decode(T.self, from: newData)
                         onSuccess(result)
                     }
                     catch(let catchError) {
