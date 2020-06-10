@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="71H-Sh-eVE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="71H-Sh-eVE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -15,20 +15,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ysh-cH-B0C">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hyf-hl-1am">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <sections/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Je6-bx-piT" firstAttribute="trailing" secondItem="Hyf-hl-1am" secondAttribute="trailing" id="6nb-Oc-Nq5"/>
-                            <constraint firstItem="Hyf-hl-1am" firstAttribute="leading" secondItem="Je6-bx-piT" secondAttribute="leading" id="U5z-jy-5a2"/>
-                            <constraint firstItem="Hyf-hl-1am" firstAttribute="top" secondItem="Ysh-cH-B0C" secondAttribute="top" id="cfC-cf-awH"/>
-                            <constraint firstItem="Je6-bx-piT" firstAttribute="bottom" secondItem="Hyf-hl-1am" secondAttribute="bottom" id="j6u-Yh-RPs"/>
-                        </constraints>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Je6-bx-piT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="More" image="More1" selectedImage="More2" id="nY9-tB-5IA"/>
