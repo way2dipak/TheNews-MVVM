@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rWm-11-lma">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Black.ttf">
+            <string>Roboto-Black</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="n5R-3X-i7M">
@@ -16,38 +29,129 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The News" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTd-Z0-Shf">
-                                <rect key="frame" x="132" y="279.5" width="150" height="137"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NwB-ED-f85">
+                                <rect key="frame" x="62" y="382.5" width="290" height="141.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="MeO-AJ-RAE">
+                                        <rect key="frame" x="0.0" y="0.0" width="212" height="89"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AUi-Uc-M8d">
+                                                <rect key="frame" x="0.0" y="0.0" width="212" height="47"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="40"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News API" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZTo-0q-A63">
+                                                <rect key="frame" x="0.0" y="42" width="212" height="47"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="40"/>
+                                                <color key="textColor" name="DarkPink"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The best stories from the sources you love, selected just for you." lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSu-s4-IgQ">
+                                        <rect key="frame" x="0.0" y="104" width="268.5" height="37.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xzi-5c-2Yx">
+                                <rect key="frame" x="62" y="712" width="290" height="120"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siri suggests stories, channels, and topics based on Safari and app usage. You can change this in Settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kn-B5-5Bh">
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="26"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="11"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EtF-hJ-Dvs">
+                                        <rect key="frame" x="0.0" y="66" width="290" height="54"/>
+                                        <color key="backgroundColor" name="DarkPink"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Continue"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onTapSignInButton:" destination="OFU-KV-GwO" eventType="touchUpInside" id="HJm-fg-q97"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Z4E-fX-j5F"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tt-my-aBm" customClass="GIDSignInButton">
-                                <rect key="frame" x="132" y="436.5" width="150" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="6LR-r2-Zva"/>
-                                    <constraint firstAttribute="width" constant="150" id="lNu-AE-hqg"/>
+                                    <constraint firstItem="4kn-B5-5Bh" firstAttribute="leading" secondItem="EtF-hJ-Dvs" secondAttribute="leading" id="C0Q-3p-jZ1"/>
+                                    <constraint firstItem="4kn-B5-5Bh" firstAttribute="centerX" secondItem="EtF-hJ-Dvs" secondAttribute="centerX" id="COJ-5I-frQ"/>
+                                    <constraint firstItem="EtF-hJ-Dvs" firstAttribute="centerX" secondItem="Xzi-5c-2Yx" secondAttribute="centerX" id="JDh-49-vk4"/>
+                                    <constraint firstAttribute="trailing" secondItem="EtF-hJ-Dvs" secondAttribute="trailing" id="SY6-NK-sUe"/>
+                                    <constraint firstItem="EtF-hJ-Dvs" firstAttribute="leading" secondItem="Xzi-5c-2Yx" secondAttribute="leading" id="fJ7-2B-mBj"/>
+                                    <constraint firstItem="4kn-B5-5Bh" firstAttribute="top" secondItem="Xzi-5c-2Yx" secondAttribute="top" id="nIX-24-mny"/>
+                                    <constraint firstItem="EtF-hJ-Dvs" firstAttribute="top" secondItem="4kn-B5-5Bh" secondAttribute="bottom" constant="40" id="pkU-Mx-cff"/>
+                                    <constraint firstItem="4kn-B5-5Bh" firstAttribute="trailing" secondItem="EtF-hJ-Dvs" secondAttribute="trailing" id="sor-Yg-sWl"/>
+                                    <constraint firstAttribute="bottom" secondItem="EtF-hJ-Dvs" secondAttribute="bottom" id="wbJ-NG-QEG"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Lcr-ES-EYu">
+                                <rect key="frame" x="197" y="812" width="20" height="20"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="3tt-my-aBm" firstAttribute="top" secondItem="kTd-Z0-Shf" secondAttribute="bottom" constant="20" id="Iva-zz-1vF"/>
-                            <constraint firstItem="kTd-Z0-Shf" firstAttribute="centerY" secondItem="kQQ-k1-sPI" secondAttribute="centerY" constant="-100" id="Y1T-VL-jIy"/>
-                            <constraint firstItem="kTd-Z0-Shf" firstAttribute="centerX" secondItem="3tt-my-aBm" secondAttribute="centerX" id="YlI-yN-cqz"/>
-                            <constraint firstItem="3tt-my-aBm" firstAttribute="centerX" secondItem="kQQ-k1-sPI" secondAttribute="centerX" id="hH1-NF-Nze"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Jio-IN-Yyh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xzi-5c-2Yx" firstAttribute="width" secondItem="kQQ-k1-sPI" secondAttribute="width" multiplier="0.7" id="DCz-gB-G3K"/>
+                            <constraint firstItem="Xzi-5c-2Yx" firstAttribute="centerX" secondItem="Jio-IN-Yyh" secondAttribute="centerX" id="WWh-g5-WuB"/>
+                            <constraint firstItem="NwB-ED-f85" firstAttribute="centerY" secondItem="Jio-IN-Yyh" secondAttribute="centerY" id="XbI-0x-SAy"/>
+                            <constraint firstItem="NwB-ED-f85" firstAttribute="width" secondItem="kQQ-k1-sPI" secondAttribute="width" multiplier="0.7" id="ZCp-1e-iMB"/>
+                            <constraint firstItem="Lcr-ES-EYu" firstAttribute="centerX" secondItem="kQQ-k1-sPI" secondAttribute="centerX" id="gae-55-AFg"/>
+                            <constraint firstItem="Jio-IN-Yyh" firstAttribute="bottom" secondItem="Lcr-ES-EYu" secondAttribute="bottom" constant="30" id="nNa-cx-g3N"/>
+                            <constraint firstItem="EtF-hJ-Dvs" firstAttribute="height" secondItem="kQQ-k1-sPI" secondAttribute="height" multiplier="0.06" id="u2h-fs-vvt"/>
+                            <constraint firstItem="NwB-ED-f85" firstAttribute="centerX" secondItem="Jio-IN-Yyh" secondAttribute="centerX" id="vlz-yl-ZvS"/>
+                            <constraint firstItem="Jio-IN-Yyh" firstAttribute="bottom" secondItem="Xzi-5c-2Yx" secondAttribute="bottom" constant="30" id="xrw-Nx-YZj"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5i2-88-01k"/>
+                    <connections>
+                        <outlet property="lblDescription" destination="hSu-s4-IgQ" id="HJq-PV-t5i"/>
+                        <outlet property="lblSiriSuggestion" destination="4kn-B5-5Bh" id="gC7-y5-9zc"/>
+                        <outlet property="spinner" destination="Lcr-ES-EYu" id="dKm-qO-aHb"/>
+                        <outlet property="vwBottom" destination="Xzi-5c-2Yx" id="YCu-qT-I8k"/>
+                        <outlet property="vwStack" destination="NwB-ED-f85" id="HXP-3y-ylg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Df-WY-wZE" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="218" y="141"/>
+            <point key="canvasLocation" x="1127.536231884058" y="140.625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4Y4-Ut-6p7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rWm-11-lma" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="79p-1W-ILQ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OFU-KV-GwO" kind="relationship" relationship="rootViewController" id="hez-7J-9t9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qbe-GU-36Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="217.39130434782609" y="140.625"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="DarkPink">
+            <color red="0.92199999094009399" green="0.2669999897480011" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -9,66 +9,23 @@
 import Foundation
 import UIKit
 
-class NetworkManager {
-    
-    static let shared = NetworkManager()
-    private init() {}
-    
-    enum HTTPMethod: String {
-        case GET = "GET"
-        case POST = "POST"
-        case PUT = "PUT"
-        case PATCH = "PATCH"
-    }
-    
-    private var session = URLSession.shared {
-        didSet {
-            self.session.configuration.timeoutIntervalForRequest = TimeInterval(60)
-        }
-    }
-    private var task: URLSessionDataTask? = nil
-    
-    func httpRequestWith<T : Codable>(link: String, method: HTTPMethod, headers: [String:String], params: [String:Any], onSuccess: @escaping((T)->()), onFailure: @escaping((String)->())) {
-        let url = URL(string: link.replacingOccurrences(of: " ", with: "%20"))!
-        var urlRequest = URLRequest(url: url)
-        print("URLRequest: \(urlRequest)")
-        if headers.count != 0 {
-            urlRequest.allHTTPHeaderFields = headers
-        }
-        else {
-            urlRequest.allHTTPHeaderFields = [
-                "content-type": "application/json"
-            ]
-        }
-        if method == .POST {
-            let postData = try! JSONSerialization.data(withJSONObject: params, options: [])
-            urlRequest.httpBody = postData
-        }
-        urlRequest.httpMethod = method.rawValue
-        
-        task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-            if error != nil {
-                onFailure(error!.localizedDescription)
-            }
-            else {
-                if let newData = data {
-                    let dict = try! JSONSerialization.jsonObject(with: newData, options: .mutableContainers) as? [String:Any] ?? [:]
-                    print("Response: \(dict)")
-                    
-                    let decoder = JSONDecoder()
-                    do {
-                        let result = try decoder.decode(T.self, from: newData)
-                        onSuccess(result)
-                    }
-                    catch(let catchError) {
-                        onFailure(catchError.localizedDescription)
-                    }
+class NetworkManagerClient: APIClientProtocol {
+    func httpRequestWith<T: Codable>(_ request: APIRequest, completion: @escaping ((T) -> ()), failure: @escaping ((String?)->())) {
+        print("URLRequest: \(request)")
+        fetchData(request) { response in
+            switch response {
+            case .success(let results):
+                do {
+                    let value = try JSONDecoder().decode(T.self, from: results)
+                    completion(value)
+                } catch let error {
+                    print("Error: \(error.localizedDescription)")
+                    failure(APIError.dataDecodingError.rawValue)
                 }
-                else {
-                    onFailure("Server Error")
-                }
+                
+            case .failure(let error):
+                failure(error.rawValue)
             }
-        })
-        task?.resume()
+        }
     }
 }

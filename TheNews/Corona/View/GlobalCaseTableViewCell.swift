@@ -10,6 +10,23 @@ import UIKit
 
 class GlobalCaseTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lblGlobalRate: UILabel!
+    @IBOutlet weak var lblTotalRecovered: UILabel!
+    @IBOutlet weak var lblCritical: UILabel!
+    @IBOutlet weak var lblTotalDeaths: UILabel!
+    @IBOutlet weak var lblLastUpdatedAgo: UILabel!
+    
+    var details: GlobalRate? {
+        didSet {
+            lblGlobalRate.text = Global.shared.formatNumber(details?.totalConfirmed ?? 0)
+            lblTotalRecovered.text = Global.shared.formatNumber((details?.totalConfirmed ?? 0) - (details?.totalDeaths ?? 0))
+            lblTotalDeaths.text = Global.shared.formatNumber(details?.totalDeaths ?? 0)
+            lblCritical.text = "0"
+            lblLastUpdatedAgo.text = details?.returnLastUpdatedOn() ?? ""
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

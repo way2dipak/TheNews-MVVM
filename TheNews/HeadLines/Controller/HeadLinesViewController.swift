@@ -12,8 +12,9 @@ class HeadLinesViewController: BaseViewController {
     
     @IBOutlet weak var headlineTableView: UITableView! {
         didSet {
+            headlineTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
             let refresh = UIRefreshControl()
-            refresh.tintColor = .black
+            refresh.tintColor = UIColor(named: "DarkPink")
             self.headlineTableView.refreshControl = refresh
             refresh.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
         }
@@ -21,25 +22,24 @@ class HeadLinesViewController: BaseViewController {
     @IBOutlet weak var scrollToTopButton: UIButton!
     @IBOutlet weak var scrollToTopTrailingConstraint: NSLayoutConstraint!
     
-    var articlesArray = [DiscoverViewModel]()
-    var totalCount = 38
-    var pageNo = 1
-    var isLoading = false
     var scrollToTop = false
+    private var vwModel = HeadLineViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentScreenType = .headlines
         setUp()
         registerNib()
-        fetchTopHeadLines(for: pageNo)
+        vwModel.fetchTopHeadlines()
+        vwModel.refreshUI = { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.headlineTableView.refreshControl?.endRefreshing()
+                self.headlineTableView.reloadData()
+            }
+        }
     }
     
     func setUp() {
-        headlineTableView.estimatedRowHeight = 500
-        headlineTableView.rowHeight = UITableView.automaticDimension
-        headlineTableView.tableFooterView = UIView()
-        headlineTableView.hideTableView(true)
         scrollToTopButton.alpha = 0
     }
     
@@ -49,100 +49,67 @@ class HeadLinesViewController: BaseViewController {
     }
     
     @objc func refreshHandler() {
-        pageNo = 1
-        isLoading = false
         self.headlineTableView.refreshControl?.beginRefreshing()
-        fetchTopHeadLines(for: pageNo, clearArray: true, isResfresh: true)
+        vwModel.fetchTopHeadlines(clearArray: true)
     }
-    
-    func fetchTopHeadLines(for PageNo: Int, clearArray: Bool=false, isResfresh: Bool=false) {
-        HeadLinesService().fetchTopHeadLines(for: PageNo, result: { [weak self](response) in
-            if clearArray {
-                self?.articlesArray.removeAll()
-            }
-            DispatchQueue.main.async {
-                for values in response {
-                    self?.articlesArray.append(DiscoverViewModel(articles: values))
-                }
-                self?.pageNo += 1
-                self?.isLoading = true
-                if isResfresh {
-                    self?.headlineTableView.refreshControl?.endRefreshing()
-                }
-                self?.headlineTableView.reloadData()
-                self?.headlineTableView.hideTableView(false)
-                
-            }
-        }) { [weak self](message) in
-            if isResfresh {
-                DispatchQueue.main.async {
-                    self?.headlineTableView.refreshControl?.endRefreshing()
-                }
-            }
-            self?.isLoading = false
-            if message != "" {
-                self?.displayAlert(title: "Error", message: message)
-            }
-            DispatchQueue.main.async {
-                self?.headlineTableView.reloadData()
-            }
-        }
-    }
-    
     @IBAction func scrollToTop(_ sender: UIButton) {
-        if articlesArray.count != 0 {
-            headlineTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        if vwModel.articleList.count != 0 {
+            UIView.animate(withDuration: 1.5) {
+                self.headlineTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
         }
     }
 }
 
 extension HeadLinesViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return vwModel.getNumberOfSection()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articlesArray.count + 1
+        return vwModel.getNumberOfRowsIn(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row < self.articlesArray.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
-            let details = articlesArray[indexPath.row]
-            cell.setUpValues(details: details)
-            cell.cellDelegate = self
-            return cell
-        }
-        else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
-            if isLoading {
-                if self.totalCount != self.articlesArray.count {
-                    cell.activityIndicator.startAnimating()
-                    DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                        self.fetchTopHeadLines(for: self.pageNo, clearArray: false)
+        if indexPath.section == 0 {
+            if vwModel.articleList.count == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
+                cell.hideSkeleton(false)
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
+                if vwModel.articleList.count != 0 {
+                    let details = vwModel.articleList[indexPath.row]
+                    cell.details = details
+                    cell.cellDelegate = self
+                    cell.hideSkeleton()
+                }
+                
+                cell.layoutHandler = { [weak self] in
+                    guard let self = self else { return }
+                    UIView.performWithoutAnimation {
+                        self.headlineTableView.beginUpdates()
+                        self.headlineTableView.endUpdates()
                     }
                 }
-                else {
-                    isLoading = false
-                    cell.activityIndicator.stopAnimating()
-                }
+                
+                return cell
+            }
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
+                cell.activityIndicator.startAnimating()
+            DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                self.vwModel.fetchTopHeadlines()
             }
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row < self.articlesArray.count {
+        if indexPath.section == 0 {
             return UITableView.automaticDimension
-        }
-        else {
-            if isLoading {
-                if self.totalCount != self.articlesArray.count {
-                    return UITableView.automaticDimension
-                }
-                else {
-                    return 0
-                }
-            }
-            else {
-                return 0
-            }
+        } else {
+            return 60
         }
     }
     

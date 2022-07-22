@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="73K-kJ-5hb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="73K-kJ-5hb">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,17 +15,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0D-Qc-F7G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4212.1875" y="-385"/>
+            <point key="canvasLocation" x="4222" y="-385"/>
         </scene>
-        <!--More-->
+        <!--Account-->
         <scene sceneID="nFc-lS-8KL">
             <objects>
-                <viewControllerPlaceholder storyboardName="More" id="01w-VX-B2v" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Account" id="01w-VX-B2v" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="1jW-kX-Pzy"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5W7-bx-LmI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4225.3125" y="-38.75"/>
+            <point key="canvasLocation" x="4219" y="-29"/>
         </scene>
         <!--HeadLines-->
         <scene sceneID="Ysm-JX-j9G">
@@ -35,7 +35,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bP4-3a-1TP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4245" y="-147.5"/>
+            <point key="canvasLocation" x="4232" y="-281"/>
         </scene>
         <!--Corona-->
         <scene sceneID="YLs-5l-pqM">
@@ -45,7 +45,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAw-Zz-6ph" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4224.375" y="-290"/>
+            <point key="canvasLocation" x="4213" y="-150"/>
         </scene>
         <!--Dash Board Tab Controller-->
         <scene sceneID="V2C-Mn-abH">
@@ -57,6 +57,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.92156863209999995" green="0.26666668059999998" blue="0.35294118520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" red="0.92156863209999995" green="0.26666668059999998" blue="0.35294118520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="aja-Vh-NqL" kind="relationship" relationship="viewControllers" id="zud-J0-Rxy"/>

@@ -8,26 +8,45 @@
 
 import Foundation
 
-class CoronaViewModel: Codable {
-    var country: String
-    var coronaData: CoronaModel?
+class CoronaViewModel {
     
-    init(details: CoronaModel) {
-        country = details.country.capitalized
-        coronaData = details
+    enum HeaderSection {
+        case country
+        case dashboard
+        case worldwide
+    }
+    var sectionList: [HeaderSection] = [.country, .dashboard, .worldwide]
+    var coronaDetails: CoronaResponse?
+    var refreshUI: (() -> ())?
+    var errorUI: (() -> ())?
+    
+    private var service = CoronaDataManager()
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        return sectionList.count
     }
     
-    func getWorldWideCoronaResult() {
-        let url = "https://covid-19-data.p.rapidapi.com/totals?format=json"
-        NetworkManager.shared.httpRequestWith(link: url, method: .GET, headers: Global.shared.coronaApiHeaders, params: [:], onSuccess: { [weak self](response: [CoronaModel]) in
-            if response.count != 0 {
-                self?.coronaData = response[0]
-            }
-            else {
-                print("Empty Response")
-            }
-        }) { (message) in
-            print("ErrorInCoronaViewModel: \(message)")
+    func sectionNameBasedOnRows(index: IndexPath) -> HeaderSection {
+        return sectionList[index.row]
+    }
+    
+    func getAllCountryList() -> [Country] {
+        return coronaDetails?.countries ?? []
+    }
+    
+    func getDetailsBasedOnCountry(code: String) -> Country? {
+        return coronaDetails?.countries?.filter({ $0.countryCode?.lowercased() ?? "" == code.lowercased() }).first
+    }
+    
+    func getDefaultCountryDetails() -> Country? {
+        return coronaDetails?.countries?.filter({ $0.countryCode?.lowercased() ?? "" == "in" }).first
+    }
+    
+    func fetchCoronaWorldWideSummary() {
+        service.fetchCoronaWorldWideSummary { [weak self] response in
+            guard let self = self else { return }
+            self.coronaDetails = response
+            self.refreshUI?()
         }
     }
 }

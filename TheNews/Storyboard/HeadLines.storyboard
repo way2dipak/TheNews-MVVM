@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dc1-xR-WiS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dc1-xR-WiS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,22 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKt-19-22h">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKt-19-22h">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="hAq-pV-jjZ" id="C59-f5-b4L"/>
                                     <outlet property="delegate" destination="hAq-pV-jjZ" id="fkH-AX-hK0"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWA-dw-jYy">
-                                <rect key="frame" x="414" y="753" width="40" height="40"/>
+                                <rect key="frame" x="414" y="703" width="40" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="WLa-4W-8hw"/>
                                     <constraint firstAttribute="height" constant="40" id="cZ7-rR-fqG"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" name="DarkPink"/>
                                 <state key="normal" image="ScrollUp"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -55,16 +57,16 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hSU-GM-RmC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LKt-19-22h" firstAttribute="leading" secondItem="hSU-GM-RmC" secondAttribute="leading" id="4UP-12-msx"/>
                             <constraint firstItem="hSU-GM-RmC" firstAttribute="trailing" secondItem="uWA-dw-jYy" secondAttribute="trailing" constant="-40" id="6ZE-MT-dyT"/>
                             <constraint firstItem="LKt-19-22h" firstAttribute="top" secondItem="c8H-Q1-FoW" secondAttribute="top" id="Zn9-v6-SCK"/>
-                            <constraint firstItem="hSU-GM-RmC" firstAttribute="bottom" secondItem="uWA-dw-jYy" secondAttribute="bottom" constant="20" id="fgu-zI-BUv"/>
+                            <constraint firstItem="hSU-GM-RmC" firstAttribute="bottom" secondItem="uWA-dw-jYy" secondAttribute="bottom" constant="70" id="fgu-zI-BUv"/>
                             <constraint firstItem="hSU-GM-RmC" firstAttribute="trailing" secondItem="LKt-19-22h" secondAttribute="trailing" id="foH-3j-eie"/>
                             <constraint firstItem="hSU-GM-RmC" firstAttribute="bottom" secondItem="LKt-19-22h" secondAttribute="bottom" id="l0h-oh-XOt"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hSU-GM-RmC"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="HeadLines" image="HeadLines1" selectedImage="HeadLines2" id="kKs-Ga-2Pm"/>
                     <navigationItem key="navigationItem" title="Top Headlines" id="z7Q-eJ-M2c"/>
@@ -83,11 +85,15 @@
         <scene sceneID="ZeV-eP-QKR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dc1-xR-WiS" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="1tp-G2-3qj">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.92156863209999995" green="0.26666668059999998" blue="0.35294118520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -103,5 +109,11 @@
         <image name="HeadLines1" width="25" height="25"/>
         <image name="HeadLines2" width="25" height="25"/>
         <image name="ScrollUp" width="75" height="75"/>
+        <namedColor name="DarkPink">
+            <color red="0.92199999094009399" green="0.2669999897480011" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

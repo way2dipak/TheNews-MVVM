@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JWS-Zz-svk">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Account-->
+        <scene sceneID="PZc-Ua-zdp">
+            <objects>
+                <viewController storyboardIdentifier="AccountVC" id="x8W-db-HOL" customClass="AccountVC" customModule="The_News" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EkS-QA-gSi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSr-uz-o7w">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RdE-Cb-AUb">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" name="DarkPink"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkM-AP-gQE">
+                                <rect key="frame" x="354" y="54" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="36g-Bt-Xh9"/>
+                                    <constraint firstAttribute="height" constant="50" id="Dmr-pj-Kuq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
+                                <color key="tintColor" name="DarkPink"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="cross"/>
+                                <connections>
+                                    <action selector="onTapBackBtn:" destination="x8W-db-HOL" eventType="touchUpInside" id="M0I-Ql-fGu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9Xd-Y6-4nz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RdE-Cb-AUb" firstAttribute="centerY" secondItem="EkS-QA-gSi" secondAttribute="centerY" id="FsQ-XJ-hqX"/>
+                            <constraint firstItem="hSr-uz-o7w" firstAttribute="top" secondItem="EkS-QA-gSi" secondAttribute="top" id="HaX-H3-Q9c"/>
+                            <constraint firstAttribute="bottom" secondItem="hSr-uz-o7w" secondAttribute="bottom" id="N2b-A8-zv5"/>
+                            <constraint firstItem="9Xd-Y6-4nz" firstAttribute="trailing" secondItem="hSr-uz-o7w" secondAttribute="trailing" id="Q3z-Hs-ITV"/>
+                            <constraint firstItem="IkM-AP-gQE" firstAttribute="top" secondItem="9Xd-Y6-4nz" secondAttribute="top" constant="10" id="bbb-6M-fi0"/>
+                            <constraint firstItem="hSr-uz-o7w" firstAttribute="leading" secondItem="9Xd-Y6-4nz" secondAttribute="leading" id="bqG-uZ-E1Q"/>
+                            <constraint firstItem="9Xd-Y6-4nz" firstAttribute="trailing" secondItem="IkM-AP-gQE" secondAttribute="trailing" constant="10" id="fKp-VT-IgN"/>
+                            <constraint firstItem="RdE-Cb-AUb" firstAttribute="centerX" secondItem="EkS-QA-gSi" secondAttribute="centerX" id="fea-V9-cpO"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Account" image="Account1" selectedImage="Account2" id="10e-3P-6cZ">
+                        <color key="badgeColor" name="DarkPink"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Account" id="5Hm-PK-2AW"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="btnClose" destination="IkM-AP-gQE" id="Dc1-7n-X5K"/>
+                        <outlet property="spinner" destination="RdE-Cb-AUb" id="duq-vB-BcA"/>
+                        <outlet property="webView" destination="hSr-uz-o7w" id="3SX-pB-UGh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uSu-vL-dk1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2842.0289855072465" y="140.625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8Rr-WS-LRQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="JWS-Zz-svk" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="u6i-cx-ebk">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="x8W-db-HOL" kind="relationship" relationship="rootViewController" id="9vu-zl-W55"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ppq-hD-MPm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1931.8840579710147" y="140.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Account1" width="25" height="25"/>
+        <image name="Account2" width="25" height="25"/>
+        <image name="cross" width="85.333335876464844" height="85.333335876464844"/>
+        <namedColor name="DarkPink">
+            <color red="0.92199999094009399" green="0.2669999897480011" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

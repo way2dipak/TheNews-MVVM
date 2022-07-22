@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OQn-2B-vf7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OQn-2B-vf7">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,13 +22,14 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uou-Ph-dcP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="CQ2-fm-ec5" id="LEU-LC-ZcZ"/>
                                     <outlet property="delegate" destination="CQ2-fm-ec5" id="aOU-d2-D56"/>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="g5N-RZ-z95"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uou-Ph-dcP" firstAttribute="top" secondItem="EbN-1W-C79" secondAttribute="top" id="134-Ws-eD3"/>
@@ -40,9 +41,8 @@
                             <constraint firstItem="uou-Ph-dcP" firstAttribute="leading" secondItem="g5N-RZ-z95" secondAttribute="leading" id="bUL-2n-hDA"/>
                             <constraint firstItem="gY9-ZS-1Tx" firstAttribute="top" secondItem="EbN-1W-C79" secondAttribute="top" id="ra9-G5-Ggm"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="g5N-RZ-z95"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="COVID" image="Corona1" selectedImage="Corona2" id="Ahx-l4-REd"/>
+                    <tabBarItem key="tabBarItem" title="COVID" image="Corona1" selectedImage="Corona1" id="Ahx-l4-REd"/>
                     <navigationItem key="navigationItem" title="Corona" id="fNP-b6-AAS">
                         <barButtonItem key="rightBarButtonItem" image="Profile" id="Tw1-2n-hqq"/>
                     </navigationItem>
@@ -69,63 +69,41 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UIf-gj-NDo">
+                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKf-wm-3dY">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <prototypes>
-                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CountryTableViewCell" id="ZET-0h-JKu" customClass="CountryTableViewCell" customModule="The_News" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="28" width="320" height="65"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZET-0h-JKu" id="ADm-D4-1uo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9w-Al-QU2">
-                                                                <rect key="frame" x="20" y="20" width="280" height="25"/>
-                                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="e9w-Al-QU2" secondAttribute="bottom" constant="20" id="CLU-Eh-6oL"/>
-                                                            <constraint firstItem="e9w-Al-QU2" firstAttribute="leading" secondItem="ADm-D4-1uo" secondAttribute="leading" constant="20" id="Z5u-yo-OZv"/>
-                                                            <constraint firstItem="e9w-Al-QU2" firstAttribute="top" secondItem="ADm-D4-1uo" secondAttribute="top" constant="20" id="tAf-hi-K02"/>
-                                                            <constraint firstItem="e9w-Al-QU2" firstAttribute="centerX" secondItem="ADm-D4-1uo" secondAttribute="centerX" id="w4w-fl-fMp"/>
-                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="e9w-Al-QU2" secondAttribute="trailing" constant="20" id="xID-VA-TmC"/>
-                                                        </constraints>
-                                                    </tableViewCellContentView>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <connections>
-                                                        <outlet property="countryNameLabel" destination="e9w-Al-QU2" id="LHS-ya-jM6"/>
-                                                    </connections>
-                                                </tableViewCell>
-                                            </prototypes>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <outlet property="dataSource" destination="hKd-BR-sdi" id="gx8-pz-C5L"/>
-                                                <outlet property="delegate" destination="hKd-BR-sdi" id="9Gn-GB-XHB"/>
+                                                <outlet property="dataSource" destination="hKd-BR-sdi" id="qv9-Er-c8c"/>
+                                                <outlet property="delegate" destination="hKd-BR-sdi" id="Dmj-jW-tAm"/>
                                             </connections>
-                                        </tableView>
+                                        </pickerView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="UIf-gj-NDo" firstAttribute="top" secondItem="wq0-5E-3JL" secondAttribute="top" id="4ap-Ru-tRD"/>
-                                        <constraint firstAttribute="bottom" secondItem="UIf-gj-NDo" secondAttribute="bottom" id="EC6-sm-73T"/>
-                                        <constraint firstAttribute="trailing" secondItem="UIf-gj-NDo" secondAttribute="trailing" id="xPV-g4-tTe"/>
-                                        <constraint firstItem="UIf-gj-NDo" firstAttribute="leading" secondItem="wq0-5E-3JL" secondAttribute="leading" id="zm4-Qo-mt6"/>
+                                        <constraint firstAttribute="trailing" secondItem="SKf-wm-3dY" secondAttribute="trailing" id="103-dk-8bW"/>
+                                        <constraint firstItem="SKf-wm-3dY" firstAttribute="leading" secondItem="wq0-5E-3JL" secondAttribute="leading" id="E1Y-ik-K7Q"/>
+                                        <constraint firstAttribute="bottom" secondItem="SKf-wm-3dY" secondAttribute="bottom" id="QRq-ar-oST"/>
+                                        <constraint firstItem="SKf-wm-3dY" firstAttribute="top" secondItem="wq0-5E-3JL" secondAttribute="top" id="qv4-v1-Ruk"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="t0k-9Y-biF"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="t0k-9Y-biF" firstAttribute="trailing" secondItem="ZVa-DH-T7i" secondAttribute="trailing" id="3C5-4T-qD9"/>
                             <constraint firstItem="ZVa-DH-T7i" firstAttribute="leading" secondItem="t0k-9Y-biF" secondAttribute="leading" id="DFW-2v-Vdd"/>
                             <constraint firstItem="ZVa-DH-T7i" firstAttribute="top" secondItem="9Wr-e7-omj" secondAttribute="top" id="fV8-dD-sUc"/>
-                            <constraint firstItem="t0k-9Y-biF" firstAttribute="bottom" secondItem="ZVa-DH-T7i" secondAttribute="bottom" id="jZU-5f-zIX"/>
+                            <constraint firstAttribute="bottom" secondItem="ZVa-DH-T7i" secondAttribute="bottom" id="jZU-5f-zIX"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="t0k-9Y-biF"/>
                     </view>
+                    <connections>
+                        <outlet property="vwPicker" destination="SKf-wm-3dY" id="tqP-mC-zRO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6q-TL-tyK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -152,7 +130,6 @@
     </scenes>
     <resources>
         <image name="Corona1" width="25" height="25"/>
-        <image name="Corona2" width="25" height="25"/>
         <image name="Profile" width="25" height="25"/>
     </resources>
 </document>

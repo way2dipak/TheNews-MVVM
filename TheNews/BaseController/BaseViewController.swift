@@ -8,29 +8,13 @@
 
 import Foundation
 import UIKit
-import GoogleSignIn
-
-enum ScreenType {
-    case discover
-    case corona
-    case headlines
-    case more
-    case source
-    case none
-}
-
-
+import SafariServices
 
 class BaseViewController: UIViewController {
     
-    var currentScreenType: ScreenType = .discover
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        layoutCustomizationToNavBar()
-        if currentScreenType != .corona {
-            navigationItem.rightBarButtonItem = getRightBarButton()
-        }
+        //layoutCustomizationToNavBar()
     }
     
     override func viewDidLoad() {
@@ -38,50 +22,29 @@ class BaseViewController: UIViewController {
         
     }
     
-    func getRightBarButton() -> UIBarButtonItem? {
-        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "Profile").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(onTapProfileButton))
-        button.tintColor = UIColor.gray
-        if let image = Global.shared.userObj?.image {
-            UIImageView().kf.setImage(with: URL(string: image), placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil) { [weak self](result) in
-                if let _ = self {
-                    switch result {
-                    case .success(let response) :
-                        button.image = response.image.circularImage(withSize: nil)?.withRenderingMode(.alwaysOriginal)
-                    case .failure(let error):
-                        button.image = #imageLiteral(resourceName: "Profile").withRenderingMode(.alwaysOriginal)
-                        print("ImageFailedToLoad: \(String(describing: error.errorDescription))")
-                    }
-                }
-            }
-        }
-        return button
-    }
-    
     func getSearchInNavbar()-> UISearchController? {
-        if currentScreenType == .corona {
+        if self is CoronaViewController {
+            return nil
+        }
+        else {
             //self.navigationController?.navigationItem.largeTitleDisplayMode = .never
             self.navigationItem.hidesSearchBarWhenScrolling = false
             let search = UISearchController(searchResultsController: nil)
-            search.dimsBackgroundDuringPresentation = false
+           // search.dimsBackgroundDuringPresentation = false
             search.searchBar.delegate = self
             //search.searchResultsUpdater = self
             return search
         }
-        else {
-            return nil
-        }
     }
     
     func layoutCustomizationToNavBar() {
-        if currentScreenType != .corona {
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.navigationController?.navigationBar.layer.masksToBounds = false
-            navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.barTintColor = .white
-            self.navigationController?.navigationBar.barStyle = .default
+        if self is CoronaViewController {
+            navigationController?.setNavigationBarHidden(true, animated: true)
         }
         else {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            navigationController?.setNavigationBarHidden(false, animated: true)
+            navigationController?.navigationBar.shadowImage = UIImage()
+            navigationController?.navigationBar.isTranslucent = true
         }
     }
     
@@ -90,15 +53,12 @@ class BaseViewController: UIViewController {
     }
     
     func scrollViewDidScroll(with offsetY: CGFloat) {
-        if currentScreenType != .corona {
-            if offsetY > -80.0 {
-                addShadowToNavigationBar(addShadow: true)
-            }
-            else {
-                addShadowToNavigationBar(addShadow: false)
-            }
+        if offsetY > -80.0 {
+            // addShadowToNavigationBar(addShadow: true)
         }
-        
+        else {
+            //   addShadowToNavigationBar(addShadow: false)
+        }
     }
     
     func addShadowToNavigationBar(addShadow: Bool) {
@@ -116,21 +76,29 @@ class BaseViewController: UIViewController {
     }
     
     @objc func onTapProfileButton() {
-        displayAlertWithAction(title: "SignOut!", cancelButtonName: "No", message: "Do you want to Signout?", actionButtonName: "Yes, Sign me out") {
-            GIDSignIn.sharedInstance().signOut()
-            let delegate = UIApplication.shared.delegate as? AppDelegate
-            delegate?.setRootController()
+        displayAlertWithAction(title: "SignOut!",
+                               cancelButtonName: "No",
+                               message: "Do you want to Signout?",
+                               actionButtonName: "Yes, Sign me out") {
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
 }
 
-extension BaseViewController: CellDelegate {
+extension BaseViewController: CellDelegate, SFSafariViewControllerDelegate {
     func didTapSourceButton(with url: String) {
-        let vc = StoryBoardManager.shared.getStoryboard(name: .Source).instantiateViewController(withIdentifier: SourceWebViewController.identifier) as! SourceWebViewController
-        vc.sourcelUrl = url
-        vc.currentScreenType = .source
-        self.navigationController?.pushViewController(vc, animated: true)
+        navigateToSafariVC(with: url)
+    }
+    
+    func navigateToSafariVC(with url: String) {
+        let vc = SFSafariViewController(url: URL(string: url)!)
+        present(vc, animated: true, completion: nil)
+        vc.delegate = self
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 

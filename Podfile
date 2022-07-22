@@ -6,11 +6,10 @@ target 'TheNews' do
   use_frameworks!
 
   # Pods for TheNews
-	pod 'Kingfisher'
+	pod 'SDWebImage'
 	pod 'IQKeyboardManagerSwift'
-	pod 'GoogleSignIn'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
+  pod 'SkeletonView'
+  
 
   target 'TheNewsTests' do
     inherit! :search_paths

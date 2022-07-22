@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDApiKey" representedClassName="CDApiKey" syncable="YES">
+        <attribute name="apikey" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CDHome" representedClassName=".CDHome" syncable="YES">
+        <attribute name="json" optional="YES" attributeType="String"/>
+        <attribute name="offset" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalResults" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="CDHome" positionX="-54" positionY="45" width="128" height="89"/>
+        <element name="CDApiKey" positionX="-54" positionY="72" width="128" height="44"/>
+    </elements>
+</model>

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dng-xd-i8o">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dng-xd-i8o">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,22 +19,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uaP-PO-v9N">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uaP-PO-v9N">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="WGi-Ku-gcN" id="9oF-sa-DFs"/>
                                     <outlet property="delegate" destination="WGi-Ku-gcN" id="AWA-Q8-oP4"/>
                                 </connections>
                             </tableView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-xx-f9s">
+                                <rect key="frame" x="0.0" y="96" width="320" height="60"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wDD-mU-hf1">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cve-0o-Yjy">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KrG-bb-QKh">
+                                                <size key="itemSize" width="128" height="128"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="WGi-Ku-gcN" id="9bQ-YW-fgj"/>
+                                                <outlet property="delegate" destination="WGi-Ku-gcN" id="sFv-eH-nKN"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Cve-0o-Yjy" secondAttribute="trailing" id="9EH-Z1-cL9"/>
+                                        <constraint firstItem="Cve-0o-Yjy" firstAttribute="leading" secondItem="wDD-mU-hf1" secondAttribute="leading" id="p7z-2Z-b9x"/>
+                                        <constraint firstAttribute="bottom" secondItem="Cve-0o-Yjy" secondAttribute="bottom" id="u39-4T-xpN"/>
+                                        <constraint firstItem="Cve-0o-Yjy" firstAttribute="top" secondItem="wDD-mU-hf1" secondAttribute="top" id="zUA-OT-XuB"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EaI-8w-0Ak"/>
+                                </constraints>
+                                <blurEffect style="systemThinMaterial"/>
+                            </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEb-SD-x2J">
-                                <rect key="frame" x="320" y="371" width="40" height="40"/>
+                                <rect key="frame" x="320" y="321" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.98812824489999995" green="0.98829704519999995" blue="0.98811751599999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="aKf-vA-gQD"/>
                                     <constraint firstAttribute="width" constant="40" id="s2U-nb-9Tv"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" name="DarkPink"/>
                                 <state key="normal" image="ScrollUp"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -55,30 +93,40 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="p1K-l3-lGR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="p1K-l3-lGR" firstAttribute="bottom" secondItem="bEb-SD-x2J" secondAttribute="bottom" constant="20" id="1PU-HN-31V"/>
+                            <constraint firstItem="p1K-l3-lGR" firstAttribute="bottom" secondItem="bEb-SD-x2J" secondAttribute="bottom" constant="70" id="1PU-HN-31V"/>
+                            <constraint firstItem="uaP-PO-v9N" firstAttribute="top" secondItem="JZI-Wc-xas" secondAttribute="top" id="2xk-O3-nQb"/>
                             <constraint firstItem="uaP-PO-v9N" firstAttribute="leading" secondItem="p1K-l3-lGR" secondAttribute="leading" id="4wh-xY-dko"/>
                             <constraint firstItem="p1K-l3-lGR" firstAttribute="trailing" secondItem="bEb-SD-x2J" secondAttribute="trailing" constant="-40" id="7Ok-q4-rtj"/>
-                            <constraint firstItem="uaP-PO-v9N" firstAttribute="top" secondItem="JZI-Wc-xas" secondAttribute="top" id="Arw-Ps-xrH"/>
                             <constraint firstItem="p1K-l3-lGR" firstAttribute="trailing" secondItem="uaP-PO-v9N" secondAttribute="trailing" id="J8k-Ut-tDa"/>
+                            <constraint firstItem="p1K-l3-lGR" firstAttribute="trailing" secondItem="4W9-xx-f9s" secondAttribute="trailing" id="Ucp-Z7-GGl"/>
+                            <constraint firstItem="4W9-xx-f9s" firstAttribute="top" secondItem="p1K-l3-lGR" secondAttribute="top" id="gfd-BZ-Epp"/>
                             <constraint firstItem="p1K-l3-lGR" firstAttribute="bottom" secondItem="uaP-PO-v9N" secondAttribute="bottom" id="kIB-6Z-PBr"/>
+                            <constraint firstItem="4W9-xx-f9s" firstAttribute="leading" secondItem="p1K-l3-lGR" secondAttribute="leading" id="pXT-ga-KXH"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="p1K-l3-lGR"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Discover" image="Discover1" selectedImage="Discover2" id="Txn-1Y-5Fx"/>
-                    <navigationItem key="navigationItem" title="Discover" id="wty-7G-0dm">
-                        <barButtonItem key="rightBarButtonItem" image="Profile" id="4tL-0D-ayX"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Discover" id="wty-7G-0dm"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="colvw" destination="Cve-0o-Yjy" id="2xI-Bm-3sd"/>
                         <outlet property="discoverTableView" destination="uaP-PO-v9N" id="vrG-x1-d7D"/>
-                        <outlet property="profileButton" destination="4tL-0D-ayX" id="o9Z-P1-c4K"/>
                         <outlet property="scrollToTopButton" destination="bEb-SD-x2J" id="aac-I9-taE"/>
                         <outlet property="scrollToTopTrailingConstraint" destination="7Ok-q4-rtj" id="Bnm-7k-Ug0"/>
+                        <outlet property="vwColTopConstraint" destination="gfd-BZ-Epp" id="vUj-YC-LRm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVI-S7-3Mm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Fpy-Zt-xKZ">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9hY-By-TIZ">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </collectionViewCellContentView>
+                </collectionViewCell>
             </objects>
             <point key="canvasLocation" x="814" y="115"/>
         </scene>
@@ -86,11 +134,16 @@
         <scene sceneID="0s8-QB-Vxy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dng-xd-i8o" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="puE-Yh-4WU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.92156863209999995" green="0.26666668059999998" blue="0.35294118520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -105,7 +158,12 @@
     <resources>
         <image name="Discover1" width="25" height="25"/>
         <image name="Discover2" width="25" height="25"/>
-        <image name="Profile" width="25" height="25"/>
         <image name="ScrollUp" width="75" height="75"/>
+        <namedColor name="DarkPink">
+            <color red="0.92199999094009399" green="0.2669999897480011" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

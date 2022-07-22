@@ -8,31 +8,67 @@
 
 import Foundation
 
+// MARK: - CoronaResponse
+struct CoronaResponse: Codable {
+    let id, message: String?
+    let global: GlobalRate?
+    let countries: [Country]?
+    let date: String?
 
-struct CoronaModel: Codable {
-    var country: String
-    var code: String
-    var confirmed: Int
-    var recovered: Int
-    var critical: Int
-    var deaths: Int
-    var latitude: Decimal
-    var longitude: Decimal
-    var lastChange: String?
-    var lastUpdate: String?
-    
     enum CodingKeys: String, CodingKey {
-        case country
-        case code
-        case confirmed
-        case recovered
-        case critical
-        case deaths
-        case latitude
-        case longitude
-        case lastChange
-        case lastUpdate
+        case id = "ID"
+        case message = "Message"
+        case global = "Global"
+        case countries = "Countries"
+        case date = "Date"
     }
-    
 }
 
+// MARK: - Country
+struct Country: Codable {
+    let id, country, countryCode, slug: String?
+    let newConfirmed, totalConfirmed, newDeaths, totalDeaths: Int?
+    let newRecovered, totalRecovered: Int?
+    let date: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case country = "Country"
+        case countryCode = "CountryCode"
+        case slug = "Slug"
+        case newConfirmed = "NewConfirmed"
+        case totalConfirmed = "TotalConfirmed"
+        case newDeaths = "NewDeaths"
+        case totalDeaths = "TotalDeaths"
+        case newRecovered = "NewRecovered"
+        case totalRecovered = "TotalRecovered"
+        case date = "Date"
+    }
+    
+    func returnLastUpdatedOn() -> String {
+        let updatedAgo = date?.toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")?.timeAgoSinceDate()
+        return "Last updated \(updatedAgo ?? "0")"
+    }
+}
+
+// MARK: - GlobalRate
+struct GlobalRate: Codable {
+    let newConfirmed, totalConfirmed, newDeaths, totalDeaths: Int?
+    let newRecovered, totalRecovered: Int?
+    let date: String?
+
+    enum CodingKeys: String, CodingKey {
+        case newConfirmed = "NewConfirmed"
+        case totalConfirmed = "TotalConfirmed"
+        case newDeaths = "NewDeaths"
+        case totalDeaths = "TotalDeaths"
+        case newRecovered = "NewRecovered"
+        case totalRecovered = "TotalRecovered"
+        case date = "Date"
+    }
+    
+    func returnLastUpdatedOn() -> String {
+        let updatedAgo = date?.toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")?.timeAgoSinceDate()
+        return "Last updated \(updatedAgo ?? "0")"
+    }
+}

@@ -12,15 +12,9 @@ import UIKit
 class Global {
     static let shared = Global()
     
-    var userObj: UserModel?
-    var country = [CountryViewModel]()
+    var apikey = ""
     
-    var coronaApiHeaders: [String:String] = [
-        "x-rapidapi-host" : "covid-19-data.p.rapidapi.com",
-        "x-rapidapi-key" : "3bd8deb81fmsh9101e25de8888efp1f5e8ejsnd86b066ee441"
-    ]
-    
-    var clientID = "158956149929-mssrkg88kb4j7r93cioi9ivp14roil9h.apps.googleusercontent.com"
+    var usageHandler: (() -> ())?
     
     func formatNumber(_ n: Int) -> String {
         let num = abs(Double(n))
@@ -62,6 +56,37 @@ class Global {
         default:
             return "\(sign)\(n)"
         }
+    }
+    
+    //MARK: get differnce between two dates
+    func differenceBetweenDate(currentDate: String = Date().toString(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
+                               targetDate: String = "",
+                               epochTargetDate: Int = 0,
+                               dateFormat: String = "yyyy-MM-dd'T'HH:mm:ss.SSSZ",//yyyy-MM-dd'T'HH:mm:ss.SSSZ
+                               isEpoch: Bool = false) -> Int {
+        var target = Date()
+        let calendar = Calendar.current
+        
+        let currentDateFormatter = DateFormatter()
+        currentDateFormatter.dateFormat = dateFormat
+        let current = currentDateFormatter.date(from: Date().toString(format: dateFormat)) ?? Date()
+
+        let targetDateFormatter = DateFormatter()
+        targetDateFormatter.dateFormat = dateFormat
+        if isEpoch {
+            let epochDate = Date(timeIntervalSince1970: (Double(epochTargetDate) / 1000))
+            let epochStr = targetDateFormatter.string(from: epochDate)
+            target = targetDateFormatter.date(from: epochStr) ?? Date()
+        } else {
+            target = targetDateFormatter.date(from: targetDate) ?? Date()
+        }
+        
+        let date1 = calendar.startOfDay(for: current)
+        let date2 = calendar.startOfDay(for: target)
+        
+        let components = calendar.dateComponents([.hour], from: date1, to: date2)
+        let hour = components.hour ?? 0
+        return hour
     }
 }
 

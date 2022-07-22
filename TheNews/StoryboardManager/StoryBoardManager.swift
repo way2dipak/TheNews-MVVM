@@ -22,7 +22,7 @@ class StoryBoardManager {
         case Discover = "Discover"
         case Corona = "Corona"
         case HeadLines = "HeadLines"
-        case More = "More"
+        case Account = "Account"
         case Source = "Source"
         
     }

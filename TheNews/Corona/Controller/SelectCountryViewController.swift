@@ -9,38 +9,54 @@
 import UIKit
 
 protocol CountryDelegate {
-    func didSelectCountry(name: String, code: String)
+    func didSelectCountry(value: Country)
 }
 
 class SelectCountryViewController: BaseViewController {
 
+    @IBOutlet weak var vwPicker: UIPickerView!
+    
     var delegate: CountryDelegate?
+    var countryList = [Country]()
+    var selectedCountry = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if selectedCountry != "" {
+            if let row = countryList.firstIndex(where: { $0.country?.lowercased() ?? "" == selectedCountry.lowercased() }) {
+                vwPicker.selectRow(row, inComponent: 0, animated: false)
+            }
+        }
+    }
 
 }
 
-extension SelectCountryViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Global.shared.country.count
+extension SelectCountryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return countryList.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return countryList[row].country?.capitalized ?? ""
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.identifier) as! CountryTableViewCell
-        cell.countryNameLabel.text = Global.shared.country[indexPath.row].name.capitalized
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let details = Global.shared.country[indexPath.row]
-        delegate?.didSelectCountry(name: details.name.capitalized, code: details.alpha2code)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let details = countryList[row]
+        delegate?.didSelectCountry(value: details)
         self.dismiss(animated: true, completion: nil)
     }
-}
 
+}
 
 class CountryTableViewCell: UITableViewCell {
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+import SkeletonView
 
 protocol CellDelegate {
     func didTapSourceButton(with url: String)
@@ -15,60 +15,83 @@ protocol CellDelegate {
 
 class ArticlesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var articleCoverImageView: UIImageView! {
-        didSet{
-            self.articleCoverImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            self.articleCoverImageView.cornerRadius = 8
-        }
-    }
+    @IBOutlet weak var articleCoverImageView: UIImageView!
     @IBOutlet weak var articleTitleLabel: UILabel! {
         didSet {
             self.articleTitleLabel.adjustsFontForContentSizeCategory = true
         }
     }
-    @IBOutlet weak var articleContentTextView: UITextView! {
+    @IBOutlet weak var articleContentTextView: UILabel! {
         didSet {
             self.articleContentTextView.adjustsFontForContentSizeCategory = true
         }
     }
     @IBOutlet weak var articlesPostedOnLabel: UILabel! {
-           didSet {
-               self.articlesPostedOnLabel.adjustsFontForContentSizeCategory = true
-           }
-       }
+        didSet {
+            self.articlesPostedOnLabel.adjustsFontForContentSizeCategory = true
+        }
+    }
     @IBOutlet weak var sourceButton: UIButton!
+    @IBOutlet weak var imgVwHeightConstraint: NSLayoutConstraint!
     
     var sourceUrl = ""
     var cellDelegate: CellDelegate?
+    var layoutHandler: (() -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        hideSkeleton(false)
     }
-
     
-    func setUpValues(details: DiscoverViewModel) {
-        articleCoverImageView.kf.indicatorType = .activity
-        articleCoverImageView.kf.indicator?.view.tintColor = .white
-        articleCoverImageView.kf.setImage(with: URL(string: details.urlToImage), placeholder: #imageLiteral(resourceName: "Placeholder"), options: [.transition(.fade(0.3))], progressBlock: nil) { [weak self](result) in
-            if let strongSelf = self {
-                switch result {
-                case .success(let response) :
-                    strongSelf.articleCoverImageView.image = response.image
-                case .failure(let error):
-                    print("ImageFailedToLoad: \(error.errorDescription ?? "Failed to get image")")
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        articleCoverImageView.image = nil
+    }
+    
+    func hideSkeleton(_ toggle: Bool = true) {
+        if !toggle {
+            articleCoverImageView.showAnimatedSkeleton()
+            articleTitleLabel.showAnimatedSkeleton()
+            articleContentTextView.showAnimatedSkeleton()
+            articlesPostedOnLabel.showAnimatedSkeleton()
+            sourceButton.showAnimatedSkeleton()
+        } else {
+            articleCoverImageView.hideSkeleton()
+            articleTitleLabel.hideSkeleton()
+            articleContentTextView.hideSkeleton()
+            articlesPostedOnLabel.hideSkeleton()
+            sourceButton.hideSkeleton()
+        }
+    }
+    
+    var details: ArticleModel? {
+        didSet {
+            articleCoverImageView.loadImage(with: details?.urlToImage ?? "") { [weak self] downloadedImage, err, _, _ in
+                guard let self = self else { return }
+                if let img = downloadedImage {
+                    self.dynamicImageHeight(image: img)
                 }
             }
+            articleTitleLabel.text = details?.title ?? ""
+            articleTitleLabel.setLineHeight(lineHeight: 2)
+            articleContentTextView.text = details?.articleDescription ?? ""
+            articleContentTextView.setLineHeight(lineHeight: 5)
+            articlesPostedOnLabel.text = details?.convertTimeStampToDate() ?? ""
+            sourceButton.setTitle("Source: \(details?.sourceName() ?? "")", for: .normal)
+            sourceUrl = details?.url ?? ""
         }
-        articleTitleLabel.text = details.title
-        articleContentTextView.text = details.articleDescription
-        articlesPostedOnLabel.text = details.publishedAt
-        sourceButton.setTitle("Source: \(details.name)", for: .normal)
-        sourceUrl = details.url
     }
     
     @IBAction func onTapVisitSourceButton(_ sender: UIButton) {
         cellDelegate?.didTapSourceButton(with: self.sourceUrl)
+    }
+    
+    func dynamicImageHeight(image: UIImage) {
+        let ratio = image.size.width / image.size.height
+        let newHeight = articleCoverImageView.frame.width / ratio
+        imgVwHeightConstraint.constant = newHeight
+        articleCoverImageView.image = image
+        layoutHandler?()
     }
     
 }

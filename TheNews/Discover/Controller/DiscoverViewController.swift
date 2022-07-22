@@ -9,135 +9,118 @@
 import UIKit
 
 class DiscoverViewController: BaseViewController {
-    
+    @IBOutlet weak var colvw: UICollectionView! {
+        didSet {
+            colvw.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }
+    }
     @IBOutlet weak var profileButton: UIBarButtonItem!
     @IBOutlet weak var discoverTableView: UITableView! {
         didSet {
+            discoverTableView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 60, right: 0)
             let refresh = UIRefreshControl()
-            refresh.tintColor = .black
+            refresh.tintColor = UIColor(named: "DarkPink")
             self.discoverTableView.refreshControl = refresh
             refresh.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
         }
     }
-    @IBOutlet weak var scrollToTopButton: UIButton!
-    @IBOutlet weak var scrollToTopTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollToTopButton: UIButton?
+    @IBOutlet weak var scrollToTopTrailingConstraint: NSLayoutConstraint?
+    @IBOutlet weak var vwColTopConstraint: NSLayoutConstraint?
     
-    var articleArray = [DiscoverViewModel]()
-    var pageNo = 1
-    var totalCount = 100
-    var isLoading: Bool = false
+    
     var scrollToTop = false
+    private var vwModel = DiscoverViewModel()
+    private var offsetCondition: CGFloat = UIDevice.current.hasNotch ? 200 : 176
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentScreenType = .discover
         registerNib()
         setUpView()
-        fetchNews(for: pageNo)
+        vwModel.fetchDiscoverList()
+        vwModel.refreshUI = { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.discoverTableView.refreshControl?.endRefreshing()
+                self.discoverTableView.reloadData()
+            }
+        }
     }
     
     func setUpView() {
-        discoverTableView.hideTableView(true)
-        discoverTableView.estimatedRowHeight = 500
-        discoverTableView.rowHeight = UITableView.automaticDimension
-        discoverTableView.tableFooterView = UIView()
-        scrollToTopButton.alpha = 0
+        scrollToTopButton?.alpha = 0
     }
     
     func registerNib() {
+        colvw.register(UINib(nibName: CategoryCell.identifier, bundle: nil), forCellWithReuseIdentifier: CategoryCell.identifier)
         discoverTableView.register(UINib(nibName: ArticlesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ArticlesTableViewCell.identifier)
         discoverTableView.register(UINib(nibName: LoaderTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: LoaderTableViewCell.identifier)
     }
     
     @objc func refreshHandler() {
-        pageNo = 1
-        isLoading = false
         self.discoverTableView.refreshControl?.beginRefreshing()
-        fetchNews(for: pageNo, clearArray: true, isResfresh: true)
-    }
-    
-    func fetchNews(for pageNo: Int, clearArray: Bool=false, isResfresh: Bool=false) {
-        DiscoverService().fetchDiscover(for: pageNo, result: { [weak self](articles) in
-            if clearArray {
-                self?.articleArray.removeAll()
-            }
-            for values in articles {
-                self?.articleArray.append(DiscoverViewModel(articles: values))
-            }
-            DispatchQueue.main.async {
-                self?.pageNo += 1
-                self?.isLoading = true
-                if isResfresh {
-                    self?.discoverTableView.refreshControl?.endRefreshing()
-                }
-                self?.discoverTableView.reloadData()
-                self?.discoverTableView.hideTableView(false)
-            }
-        }) { [weak self](error) in
-            if isResfresh {
-                DispatchQueue.main.async {
-                    self?.discoverTableView.refreshControl?.endRefreshing()
-                }
-            }
-            self?.isLoading = false
-            self?.displayAlert(title: "Error", message: error)
-        }
+        vwModel.offset = 1
+        vwModel.fetchDiscoverList(clearArray: true)
     }
     
     @IBAction func scrollToTop(_ sender: UIButton) {
-        if articleArray.count != 0 {
-            discoverTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        if vwModel.articleList.count != 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.discoverTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
         }
     }
 }
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return vwModel.getNumberOfSection()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articleArray.count + 1
+        return vwModel.getNumberOfRowsIn(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row < articleArray.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
-            let details = articleArray[indexPath.row]
-            cell.setUpValues(details: details)
-            cell.cellDelegate = self
-            return cell
-        }
-        else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
-            if isLoading {
-                if self.totalCount != self.articleArray.count {
-                    cell.activityIndicator.startAnimating()
-                    DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                        self.fetchNews(for: self.pageNo)
+        if indexPath.section == 0 {
+            if vwModel.articleList.count == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
+                cell.hideSkeleton(false)
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesTableViewCell.identifier) as! ArticlesTableViewCell
+                if vwModel.articleList.count != 0 {
+                    let details = vwModel.articleList[indexPath.row]
+                    cell.details = details
+                    cell.cellDelegate = self
+                    cell.hideSkeleton()
+                }
+                
+                cell.layoutHandler = { [weak self] in
+                    guard let self = self else { return }
+                    UIView.performWithoutAnimation {
+                        self.discoverTableView.beginUpdates()
+                        self.discoverTableView.endUpdates()
                     }
                 }
-                else {
-                    isLoading = false
-                    cell.activityIndicator.stopAnimating()
-                }
+                
+                return cell
+            }
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: LoaderTableViewCell.identifier) as! LoaderTableViewCell
+                cell.activityIndicator.startAnimating()
+            DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                self.vwModel.fetchDiscoverList()
             }
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row < articleArray.count {
+        if indexPath.section == 0 {
             return UITableView.automaticDimension
-        }
-        else {
-            if isLoading {
-                if self.totalCount != self.articleArray.count {
-                    return 60
-                }
-                else {
-                    return 0
-                }
-            }
-            else {
-                return 0
-            }
+        } else {
+            return 60
         }
     }
     
@@ -146,6 +129,14 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         scrollViewDidScroll(with: offsetY)
+        if scrollView == colvw { return }
+        if offsetY >= -offsetCondition { //-176
+            vwColTopConstraint?.constant = 0
+        } else {
+            vwColTopConstraint?.constant = -discoverTableView.contentOffset.y - offsetCondition
+        }
+        
+        
         if offsetY > 400 {
             if scrollToTop {
                 hideScrollButton(isHidden: false)
@@ -161,20 +152,53 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func hideScrollButton(isHidden: Bool) {
+        if scrollToTopButton == nil { return }
         if isHidden {
-            self.scrollToTopTrailingConstraint.constant = -80
+            self.scrollToTopTrailingConstraint?.constant = -80
             UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
-                self.scrollToTopButton.alpha = 0
+                self.scrollToTopButton?.alpha = 0
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
         else {
-            self.scrollToTopTrailingConstraint.constant = 20
+            self.scrollToTopTrailingConstraint?.constant = 20
             UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
-                self.scrollToTopButton.alpha = 1
+                self.scrollToTopButton?.alpha = 1
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
     }
 }
 
+extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return vwModel.categoryList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+        cell.lblCategory.text = vwModel.categoryList[indexPath.row].uppercased()
+        cell.toggleSelection(vwModel.toggleCategorySelection(for: indexPath.row))
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !vwModel.isSameCategorySelected(index: indexPath.row) {
+            let cell = colvw.cellForItem(at: indexPath) as? CategoryCell
+            vwModel.selectedCategory = vwModel.categoryList[indexPath.row]
+            cell?.toggleSelection(vwModel.toggleCategorySelection(for: indexPath.row))
+            colvw.reloadData()
+            colvw.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            self.discoverTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            self.vwModel.fetchDiscoverList(clearArray: true)
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let category = vwModel.categoryList[indexPath.row]
+        return CGSize(width: category.widthOfString() + 50, height: 40)
+    }
+    
+    
+}

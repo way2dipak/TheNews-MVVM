@@ -11,18 +11,24 @@ import UIKit
 class ChooseCountryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var selectCountryButton: UIButton!
-    @IBOutlet weak var lastUpdateLabel: UILabel!
+    @IBOutlet weak var lastUpdateLabel: UILabel! {
+        didSet {
+            lastUpdateLabel.isHidden = true
+        }
+    }
     
     var handler: (()->())?
+    
+    var details: Country? {
+        didSet {
+            selectCountryButton.setTitle(details?.country ?? "", for: .normal)
+            //lastUpdateLabel.text = details?.returnLastUpdatedOn() ?? ""//dateFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    func setUpValue(details: CoronaViewModel) {
-        selectCountryButton.setTitle(details.country.capitalized, for: .normal)
-        lastUpdateLabel.text = "Last updated"
     }
     
     @IBAction func onTappedSelectCountryButton(_ sender: UIButton) {
