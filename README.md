@@ -16,7 +16,7 @@ News API is a simple, easy-to-use REST API that returns JSON search results for 
 ![AppFlow](https://user-images.githubusercontent.com/33078970/215108035-a67720aa-a24e-4431-a8e8-2fc0b85f978c.png)
 
 
-## Environment Variables
+## Build
 
 To run this project,
 
